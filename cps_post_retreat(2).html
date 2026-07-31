@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CPS Post-Management Retreat | HOME31</title>
+<style>
+  :root{
+    --navy:#08275d;--navy2:#123f82;--ink:#10224b;--line:#c9d2e2;--soft:#f5f8fc;
+    --green:#31834a;--blue:#2467b8;--purple:#7a2e9d;--teal:#16887e;--orange:#d7781f;--red:#cf3346;
+    --shadow:0 8px 26px rgba(9,34,78,.08);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#edf2f8;color:#101828;font-family:Arial,Helvetica,sans-serif;line-height:1.28}
+  .page{max-width:1500px;margin:auto;background:white;padding:12px;box-shadow:0 0 35px rgba(20,44,80,.15)}
+  .hero{background:linear-gradient(135deg,#071b49,#0b3274);color:#fff;border-radius:8px;padding:15px 24px;text-align:center}
+  .hero h1{font-size:clamp(20px,2.3vw,34px);margin:0;font-weight:800;letter-spacing:.2px}
+  .hero p{font-size:clamp(14px,1.4vw,20px);margin:4px 0 0}
+  .section{border:1px solid var(--line);border-radius:8px;padding:11px;margin-top:9px;background:#fff}
+  .title{text-align:center;color:var(--ink);font-weight:800;font-size:18px;margin:0 0 10px;text-transform:uppercase}
+  .grid{display:grid;gap:11px}
+  .p6{grid-template-columns:repeat(6,1fr)}
+  .card{border:1.5px solid;border-radius:8px;overflow:hidden;background:#fff;min-width:0}
+  .card-head{display:flex;align-items:center;gap:10px;padding:12px;font-weight:800;font-size:16px;min-height:70px}
+  .icon{width:47px;height:47px;border-radius:50%;display:grid;place-items:center;color:white;font-size:26px;flex:0 0 auto}
+  .card ul{margin:0;padding:10px 18px 15px 30px;font-size:14px}.card li{margin:4px 0}
+  .green{border-color:#54a86b}.green .card-head{background:#eff8f1;color:#17552a}.green .icon{background:var(--green)}
+  .blue{border-color:#4a8bd8}.blue .card-head{background:#edf4fd;color:#124887}.blue .icon{background:var(--blue)}
+  .purple{border-color:#aa63c4}.purple .card-head{background:#f7effa;color:#64217f}.purple .icon{background:var(--purple)}
+  .teal{border-color:#3faaa1}.teal .card-head{background:#edf9f8;color:#0a5f59}.teal .icon{background:var(--teal)}
+  .orange{border-color:#eb9a50}.orange .card-head{background:#fff5eb;color:#9c4b09}.orange .icon{background:var(--orange)}
+  .red{border-color:#e66a78}.red .card-head{background:#fff0f2;color:#972033}.red .icon{background:var(--red)}
+
+  .inventory{display:grid;grid-template-columns:repeat(15,minmax(92px,1fr));overflow-x:auto;border-radius:8px;border:1px solid var(--line)}
+  .inv{min-width:92px;text-align:center;border-right:1px solid var(--line)}.inv:last-child{border-right:0}
+  .inv .top{background:linear-gradient(#173f7d,#0c2e67);color:white;padding:8px 3px;font-size:25px;min-height:48px}
+  .inv strong{display:block;font-size:11px;color:var(--ink);padding:5px 4px;min-height:43px}
+  .inv p{font-size:10px;margin:0;padding:0 5px 8px}
+
+  .split{display:grid;grid-template-columns:.92fr 1.08fr;gap:10px;margin-top:9px}
+  .category{display:grid;grid-template-columns:58px 1fr;margin-bottom:7px;border:1px solid;border-radius:6px;overflow:hidden}
+  .category .letter{display:grid;place-items:center;color:#fff;font-weight:800;font-size:23px}
+  .category .text{padding:9px 12px}.category h3{font-size:13px;margin:0 0 2px}.category p{font-size:11px;margin:0}
+  .ca{border-color:#ed7f8a;background:#fff6f7}.ca .letter{background:#c83748}.ca h3{color:#a41d2d}
+  .cb{border-color:#e6a05f;background:#fff9f2}.cb .letter{background:#d77a1d}.cb h3{color:#a9500b}
+  .cc{border-color:#78aa80;background:#f6fbf7}.cc .letter{background:#27733a}.cc h3{color:#205d30}
+  .cd{border-color:#77a1d4;background:#f4f8fd}.cd .letter{background:#2568b4}.cd h3{color:#154a8b}
+  .ce{border-color:#a47bc3;background:#faf6fc}.ce .letter{background:#74309b}.ce h3{color:#632080}
+
+  .dependency{
+    position:relative;
+    display:block;
+    background:radial-gradient(circle at center,#f8fbff 0,#fff 65%);
+    overflow:visible;
+    padding-bottom:14px;
+  }
+  .dep-layout{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 190px minmax(0,1fr);
+    gap:14px;
+    align-items:center;
+  }
+  .dep-col{display:grid;gap:12px;align-content:start}
+  .dep-col.right{grid-template-rows:repeat(3,minmax(0,auto))}
+  .center-stack{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+  .center-node{
+    position:static;
+    transform:none;
+    width:168px;
+    height:168px;
+    justify-self:center;
+    border-radius:50%;
+    background:#08275d;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-weight:800;
+    padding:14px;
+    box-shadow:0 12px 26px rgba(8,39,93,.18);
+  }
+  .center-text{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:2px;
+    line-height:1.08;
+    font-size:18px;
+    letter-spacing:.2px;
+  }
+  .center-text .line{display:block;width:100%;text-align:center}
+  .center-note{max-width:180px;text-align:center;font-size:11px;line-height:1.35;color:#34517e;font-weight:700}
+  .dep{
+    width:100%;
+    min-width:0;
+    border:1.5px solid;
+    border-radius:12px;
+    padding:12px 13px;
+    background:white;
+    font-size:11px;
+    line-height:1.4;
+    min-height:138px;
+    box-shadow:0 4px 10px rgba(20,44,80,.05);
+  }
+  .dep h4{margin:0 0 7px;font-size:12px;text-align:center;line-height:1.25;color:#16386f}.dep ul{margin:0;padding-left:18px}.dep li{margin:3px 0;overflow-wrap:anywhere}
+  .d1{border-color:#5f95d2;background:#f5f9ff}.d2{border-color:#69a96f;background:#f3fbf3}.d3{border-color:#9c67c8;background:#faf5ff}.d4{border-color:#ef9a4c;background:#fff8f1}.d5{border-color:#46a5af;background:#f2fbfc}
+  .lines{display:none}
+
+  .criteria{display:grid;grid-template-columns:repeat(10,1fr);gap:7px}
+  .criterion{text-align:center;border:1px solid var(--line);border-radius:7px;padding:9px 6px;background:linear-gradient(#fff,#f8fafc);min-height:205px}
+  .criterion .num{font-size:17px;font-weight:800;color:var(--ink)}.criterion h3{font-size:12px;color:var(--ink);min-height:44px;margin:3px 0}.criterion .big{font-size:36px;line-height:1;margin:4px 0 8px}.criterion p{font-size:10px;margin:0}
+
+  .bottom{display:grid;grid-template-columns:.84fr 1.16fr;gap:10px;margin-top:9px}
+  .timeline{position:relative;padding-left:86px}
+  .timeline:before{content:"";position:absolute;left:42px;top:30px;bottom:30px;width:4px;background:#1a4d8f}
+  .step{position:relative;display:grid;grid-template-columns:1fr 155px;gap:12px;align-items:center;margin:12px 0;min-height:75px}
+  .day{position:absolute;left:-82px;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;color:white;text-align:center;font-size:11px;font-weight:800;border:4px solid white;box-shadow:0 2px 8px #ccd6e5}.day b{font-size:18px;display:block}
+  .s1 .day{background:#408b52}.s2 .day{background:#2b69b6}.s3 .day{background:#7a3aa0}.s4 .day{background:#d77a1d}.s5 .day{background:#0e2f69}
+  .step h4{margin:0 0 3px;font-size:12px}.step p{margin:0;font-size:11px}.output{border:1px solid var(--line);border-radius:7px;padding:10px;text-align:center;font-size:11px;font-weight:700;background:#f8fafc}
+
+  .programme-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.programme{border:1.5px solid;border-radius:8px;overflow:hidden}.programme h3{font-size:12px;text-align:center;padding:9px;margin:0;min-height:70px}.programme ul{font-size:10px;margin:0;padding:8px 12px 8px 22px;min-height:150px}.programme .owner{font-size:10px;text-align:center;font-weight:800;padding:6px;background:#eef2f7}.programme:nth-child(1){border-color:#67a778}.programme:nth-child(1) h3{background:#eff9f2;color:#23613a}.programme:nth-child(2){border-color:#5f8ed1}.programme:nth-child(2) h3{background:#f0f5fc;color:#194c94}.programme:nth-child(3){border-color:#9a69c0}.programme:nth-child(3) h3{background:#f8f1fb;color:#66268d}.programme:nth-child(4){border-color:#e68c35}.programme:nth-child(4) h3{background:#fff4e9;color:#a3530c}.programme:nth-child(5){border-color:#55a6b0}.programme:nth-child(5) h3{background:#eef9fa;color:#17636b}
+  .raci{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:8px}.role{text-align:center;border:1px solid var(--line);border-radius:7px;padding:8px 5px}.role .big{font-size:27px}.role h4{font-size:10px;margin:4px 0}.role p{font-size:9px;margin:0}
+  .footer{margin-top:9px;background:linear-gradient(135deg,#061c4b,#0b3476);color:#fff;border-radius:7px;padding:13px 18px;display:flex;align-items:center;gap:18px;font-size:16px}.footer strong{font-size:19px;white-space:nowrap}.footer .divider{width:2px;height:35px;background:#bdd0f0}.brand{margin-left:auto;font-weight:900;font-size:21px}
+
+
+  /* Visual enhancement */
+  .hero{background:linear-gradient(135deg,#071b49 0%,#0c3478 55%,#11489f 100%);color:#fff;border-radius:12px;padding:18px 24px;text-align:center;box-shadow:0 10px 28px rgba(8,39,93,.22)}
+  .hero p{font-size:clamp(14px,1.4vw,20px);margin:6px 0 0}
+  .hero-pills{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hero-pills span{display:inline-flex;align-items:center;justify-content:center;padding:6px 12px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.14);border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.4px;text-transform:uppercase}
+  .intro-strip{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:10px;margin-top:10px}
+  .intro-card{border:1px solid var(--line);border-radius:10px;padding:11px 12px;background:linear-gradient(180deg,#ffffff,#f7faff);box-shadow:0 5px 14px rgba(9,34,78,.05)}
+  .intro-card b{display:block;margin-bottom:5px;font-size:12px;text-transform:uppercase;color:#0d3b82;letter-spacing:.4px}
+  .intro-card p{margin:0;font-size:12px;line-height:1.4}
+  .section{border:1px solid var(--line);border-radius:10px;padding:12px;margin-top:10px;background:linear-gradient(180deg,#fff,#fbfcff)}
+  .title{display:flex;align-items:center;justify-content:center;gap:10px;text-align:center;color:var(--ink);font-weight:800;font-size:18px;margin:0 0 12px;text-transform:uppercase;letter-spacing:.2px}
+  .title::before,.title::after{content:"";width:42px;height:3px;border-radius:999px;background:linear-gradient(90deg,#3b79c6,#8fb5ec)}
+  .card-head{display:flex;align-items:center;gap:10px;padding:12px;font-weight:800;font-size:16px;min-height:76px}
+  .output{border:1px solid #c9d2e2;border-radius:9px;padding:10px;text-align:center;font-size:11px;font-weight:700;background:linear-gradient(180deg,#ffffff,#eef4fb);box-shadow:0 4px 10px rgba(21,63,129,.06)}
+  .role{background:linear-gradient(180deg,#fff,#f8fbff)}
+
+
+  /* Interactive 3D dependency explorer */
+  .dep-toolbar{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0 0 14px}
+  .dep-filter{appearance:none;border:1px solid #b8c8df;background:#fff;color:#183b70;border-radius:999px;padding:7px 12px;font-weight:700;font-size:11px;cursor:pointer;transition:.2s ease}
+  .dep-filter:hover,.dep-filter:focus-visible{transform:translateY(-2px);box-shadow:0 6px 14px rgba(9,34,78,.12);outline:2px solid transparent}
+  .dep-filter.active{background:#08275d;color:#fff;border-color:#08275d}
+  .dep-stage{perspective:1100px;perspective-origin:50% 45%}
+  .dep-layout{transform-style:preserve-3d;transition:transform .25s ease}
+  .dep{position:relative;transform-style:preserve-3d;transition:transform .22s ease,box-shadow .22s ease,opacity .22s ease,filter .22s ease;cursor:pointer;will-change:transform}
+  .dep::after{content:"Click to focus";position:absolute;right:10px;bottom:8px;font-size:9px;font-weight:700;color:#61789b;opacity:0;transform:translateZ(12px);transition:.2s}
+  .dep:hover::after,.dep:focus-visible::after{opacity:1}
+  .dep:hover,.dep:focus-visible{box-shadow:0 16px 30px rgba(17,54,107,.16);z-index:3;outline:none}
+  .dep h4,.dep ul{transform:translateZ(18px)}
+  .dep.is-active{box-shadow:0 18px 34px rgba(8,39,93,.24);border-width:2px}
+  .dep.is-muted{opacity:.24;filter:grayscale(.5);transform:scale(.96)!important}
+  .center-stack{transform-style:preserve-3d}
+  .center-node{position:relative;isolation:isolate;transform-style:preserve-3d;transition:transform .3s ease;animation:hubFloat 4s ease-in-out infinite}
+  .center-node::before,.center-node::after{content:"";position:absolute;border-radius:50%;inset:-12px;border:1px solid rgba(18,78,160,.28);z-index:-1;animation:ringPulse 3s ease-out infinite}
+  .center-node::after{inset:-25px;animation-delay:1.2s}
+  .center-text{transform:translateZ(24px)}
+  .dep-detail{margin-top:14px;border:1px solid #bfd0e7;border-radius:12px;background:linear-gradient(180deg,#fff,#f2f7fd);padding:12px 14px;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;box-shadow:0 8px 18px rgba(9,34,78,.07)}
+  .dep-detail-icon{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#08275d;color:#fff;font-size:20px;font-weight:800}
+  .dep-detail h4{margin:0 0 4px;color:#123f82;font-size:13px}.dep-detail p{margin:0;font-size:11px;line-height:1.45;color:#334e73}
+  @keyframes hubFloat{0%,100%{transform:translateY(0) rotateX(0)}50%{transform:translateY(-7px) rotateX(4deg)}}
+  @keyframes ringPulse{0%{transform:scale(.9);opacity:.65}75%,100%{transform:scale(1.12);opacity:0}}
+  @media (prefers-reduced-motion:reduce){.center-node,.center-node::before,.center-node::after{animation:none}.dep,.dep-layout,.center-node{transition:none}}
+  @media(max-width:700px){.dep-stage{perspective:none}.dep-layout{transform:none!important}.dep::after{display:none}.dep-detail{grid-template-columns:1fr}.dep-detail-icon{display:none}}
+
+  @media(max-width:1100px){.p6{grid-template-columns:repeat(3,1fr)}.criteria{grid-template-columns:repeat(5,1fr)}.split,.bottom,.intro-strip{grid-template-columns:1fr}.dep-layout{grid-template-columns:1fr 180px 1fr}.programme-grid{grid-template-columns:repeat(3,1fr)}.raci{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:700px){body{background:#fff}.page{padding:6px}.hero{padding:13px 10px}.hero-pills{gap:6px}.hero-pills span{font-size:11px;padding:5px 10px}.title{font-size:14px}.title::before,.title::after{width:24px}.p6{grid-template-columns:1fr}.card-head{min-height:auto}.criteria{grid-template-columns:repeat(2,1fr)}.criterion{min-height:185px}.dep-layout{grid-template-columns:1fr;gap:10px}.dep-col{gap:8px}.center-stack{order:-1}.center-node{width:100%;height:auto;min-height:96px;border-radius:10px}.center-text{font-size:16px}.center-note{max-width:none}.dep{width:100%;min-height:auto}.timeline{padding-left:68px}.timeline:before{left:30px}.day{left:-65px;width:52px;height:52px}.step{grid-template-columns:1fr}.programme-grid{grid-template-columns:1fr}.programme ul{min-height:auto}.raci{grid-template-columns:repeat(2,1fr)}.footer{flex-wrap:wrap;font-size:12px}.footer strong{white-space:normal;font-size:15px}.brand{margin-left:0}.inventory{grid-template-columns:repeat(15,100px)}}
+  @media print{body{background:white}.page{max-width:none;box-shadow:none}.section{break-inside:avoid}.inventory{overflow:visible;grid-template-columns:repeat(15,1fr)}.inv{min-width:0}.footer{break-inside:avoid}}
+</style>
+</head>
+<body>
+<main class="page">
+  <header class="hero">
+    <h1>CPS POST-MANAGEMENT RETREAT: CONSOLIDATE → CHALLENGE → CONNECT → PRIORITISE</h1>
+    <p>Turn retreat proposals into a clear, prioritised and integrated HOME31 enterprise portfolio</p>
+    <div class="hero-pills">
+      <span>Consolidate</span>
+      <span>Challenge</span>
+      <span>Connect</span>
+      <span>Prioritise</span>
+      <span>Deliver</span>
+    </div>
+  </header>
+
+  <section class="intro-strip">
+    <div class="intro-card"><b>Purpose</b><p>Convert retreat inputs into one structured enterprise portfolio with clear programmes, priorities, dependencies and sequencing.</p></div>
+    <div class="intro-card"><b>Role of CPS</b><p>Facilitate consolidation, structure, alignment and coordination. Ownership, decisions and delivery remain with the respective divisions.</p></div>
+    <div class="intro-card"><b>Expected Output</b><p>One enterprise view of initiatives, accountable owners, resource implications, measurable KPIs and a realistic delivery roadmap.</p></div>
+  </section>
+
+  <section class="section">
+    <h2 class="title">1. Overall Synthesis – Six Enterprise Priorities</h2>
+    <div class="grid p6">
+      <article class="card green"><div class="card-head"><span class="icon">$</span>FINANCIAL<br>RESILIENCE</div><ul><li>Funding model scenarios</li><li>Government support approach</li><li>2027 budget envelope</li><li>Sustainability ratios</li><li>TAHARA / Shariah transition</li></ul></article>
+      <article class="card blue"><div class="card-head"><span class="icon">👥</span>CUSTOMER<br>TRANSFORMATION</div><ul><li>CX1 omnichannel journey</li><li>CX2 self-service journey</li><li>Customer Super-Agent</li><li>Home Financing Specialist</li><li>Customer data platform</li><li>Knowledge management & insights</li></ul></article>
+      <article class="card purple"><div class="card-head"><span class="icon">☁</span>DIGITAL<br>FOUNDATION</div><ul><li>Cloud migration roadmap</li><li>Enterprise architecture</li><li>Systems integration & API</li><li>Cybersecurity</li><li>Data platform & analytics</li></ul></article>
+      <article class="card teal"><div class="card-head"><span class="icon">🛡</span>GOVERNANCE &<br>ASSURANCE</div><ul><li>DPIA & PDPA readiness</li><li>Contract governance</li><li>ESG reporting & oversight</li><li>TRACE governance</li><li>LENS combined assurance</li><li>Compliance & audit modernisation</li></ul></article>
+      <article class="card orange"><div class="card-head"><span class="icon">👥</span>WORKFORCE<br>READINESS</div><ul><li>Workforce planning</li><li>Performance & productivity</li><li>Learning & future skills</li><li>Rewards & recognition</li><li>Employee experience</li><li>Digital HR & culture</li></ul></article>
+      <article class="card red"><div class="card-head"><span class="icon">◎</span>EXECUTION<br>DISCIPLINE</div><ul><li>Clear sponsorship & ownership</li><li>Portfolio prioritisation</li><li>Resource planning</li><li>Dependencies & sequencing</li><li>Measurable KPIs</li><li>HOME31 enterprise monitoring</li></ul></article>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="title">2. CPS First Responsibility: Create One Enterprise Initiative Inventory</h2>
+    <div class="inventory">
+      <div class="inv"><div class="top">◇</div><strong>Initiative Name</strong><p>One clear & consistent name</p></div>
+      <div class="inv"><div class="top">?</div><strong>Strategic Problem</strong><p>What institutional problem does it solve?</p></div>
+      <div class="inv"><div class="top">◎</div><strong>HOME31 Alignment</strong><p>Pillar, enterprise outcome & corporate ambition</p></div>
+      <div class="inv"><div class="top">♟</div><strong>Proposed Sponsor</strong><p>Management sponsor / champion</p></div>
+      <div class="inv"><div class="top">♟</div><strong>Accountable Owner</strong><p>Division / department accountable</p></div>
+      <div class="inv"><div class="top">♟♟</div><strong>Supporting Departments</strong><p>ICT, HR, Finance, Risk, Legal & others</p></div>
+      <div class="inv"><div class="top">◉</div><strong>Intended Outcome</strong><p>Expected enterprise or departmental outcome</p></div>
+      <div class="inv"><div class="top">◇</div><strong>Deliverables</strong><p>Key outputs or milestones by year</p></div>
+      <div class="inv"><div class="top">▣</div><strong>Timeline</strong><p>Start date, milestones, go-live & BAU</p></div>
+      <div class="inv"><div class="top">●</div><strong>Cost</strong><p>CAPEX, OPEX, manpower & recurring cost</p></div>
+      <div class="inv"><div class="top">🔗</div><strong>Dependencies & sequencing</strong><p>Systems, policies, data, people & approvals</p></div>
+      <div class="inv"><div class="top">⚠</div><strong>Risks</strong><p>Delivery, policy, data, procurement, legal & change risks</p></div>
+      <div class="inv"><div class="top">◴</div><strong>KPI</strong><p>Outcome, delivery and performance measures</p></div>
+      <div class="inv"><div class="top">☑</div><strong>Decision Status</strong><p>Approved, conditional, further study or not decided</p></div>
+      <div class="inv"><div class="top">↗</div><strong>Readiness Level</strong><p>Concept, assessed, business case, approved or execution</p></div>
+    </div>
+  </section>
+
+  <div class="split">
+    <section class="section" style="margin-top:0">
+      <h2 class="title">3. Sort Proposals into Five Decision Categories</h2>
+      <div class="category ca"><div class="letter">A</div><div class="text"><h3>ENTERPRISE STRATEGIC PROGRAMMES</h3><p>Enterprise-wide programmes with major cross-divisional impact (e.g. Financial Sustainability, CX Transformation Stack, Cloud & Digital, Workforce Transformation, Governance Stewardship, Data & Analytics, TAHARA).</p></div></div>
+      <div class="category cb"><div class="letter">B</div><div class="text"><h3>MANDATORY GOVERNANCE / COMPLIANCE INITIATIVES</h3><p>Required by law, policy or regulation (e.g. DPIA, Cybersecurity, Contract Governance, ESG reporting, and compliance management).</p></div></div>
+      <div class="category cc"><div class="letter">C</div><div class="text"><h3>ENABLING PROGRAMMES</h3><p>Enable multiple programmes (e.g. Enterprise Architecture, Cloud Foundation, Data Governance, Change Management, Workforce Capability and the HOME31 Platform).</p></div></div>
+      <div class="category cd"><div class="letter">D</div><div class="text"><h3>DEPARTMENTAL IMPROVEMENTS</h3><p>Primarily departmental or BAU improvements (e.g. Training, SOP, Dashboards, Reporting, BAU improvements).</p></div></div>
+      <div class="category ce"><div class="letter">E</div><div class="text"><h3>PROPOSALS REQUIRING FURTHER MANAGEMENT DECISION</h3><p>Require a strategic decision, trade-off or funding choice (e.g. government support assumptions, TAHARA options, new roles or structures, cloud model, CX investment).</p></div></div>
+    </section>
+
+    <section class="section dependency" style="margin-top:0">
+      <h2 class="title">4. Illustrative Duplication Risks, Overlaps & Dependencies</h2>
+      <div class="dep-toolbar" role="group" aria-label="Dependency filters">
+        <button class="dep-filter active" type="button" data-filter="all">Show All</button>
+        <button class="dep-filter" type="button" data-filter="systems">Systems</button>
+        <button class="dep-filter" type="button" data-filter="governance">Governance</button>
+        <button class="dep-filter" type="button" data-filter="people">People</button>
+      </div>
+      <div class="dep-stage">
+      <div class="dep-layout">
+        <div class="dep-col left">
+          <div class="dep d1" tabindex="0" data-group="systems governance" data-title="Governance Systems & Tools" data-summary="Several governance, assurance and tracking solutions may overlap in capability, data capture, dashboards and reporting. Rationalise them into a coordinated governance architecture before further investment."><h4>Governance Systems &amp; Tools</h4><ul><li>LENS</li><li>TRACE</li><li>Compliance management system</li><li>Contract governance tools</li><li>Audit tools &amp; analytics</li><li>ESG reporting dashboards</li><li>DPIA trackers</li><li>HOME31 platform</li></ul></div>
+          <div class="dep d4" tabindex="0" data-group="governance" data-title="CMS Naming Conflict" data-summary="The same acronym can refer to different functions. Standardising names, abbreviations and ownership will reduce confusion in governance papers, systems and reporting."><h4>⚠ CMS Naming Conflict</h4><ul><li>Contract Management Section (Legal)</li><li>Compliance Management System (Governance)</li><li>Standardise naming and abbreviations (e.g. CGS vs CMS)</li></ul></div>
+        </div>
+        <div class="center-stack">
+          <div class="center-node"><div class="center-text"><span class="line">KEY</span><span class="line">OVERLAPS &amp;</span><span class="line">DEPENDENCIES</span></div></div>
+          <div class="center-note">Areas requiring consolidation, clearer sequencing, stronger integration and naming clarity across the portfolio.</div>
+        </div>
+        <div class="dep-col right">
+          <div class="dep d2" tabindex="0" data-group="systems" data-title="CX Transformation Stack" data-summary="CX1, CX2, the Customer Super-Agent, customer data, knowledge management and analytics should be designed as one connected customer capability rather than separate projects."><h4>CX Transformation Stack</h4><ul><li>CX1 and CX2</li><li>Customer Super-Agent</li><li>Home Financing Specialist</li><li>Customer data platform</li><li>Knowledge management</li><li>AI-enabled dashboards</li></ul></div>
+          <div class="dep d3" tabindex="0" data-group="systems" data-title="Enterprise Platforms & Architecture" data-summary="Cloud, SAP, LMS, CX platforms, security and integration share architectural dependencies. Enterprise Architecture should govern sequencing, interfaces, data and technology standards."><h4>Enterprise Platforms &amp; Architecture</h4><ul><li>Cloud migration roadmap</li><li>Customer experience systems</li><li>SAP S/4HANA and LMS</li><li>Enterprise architecture</li><li>Security and integration</li></ul></div>
+          <div class="dep d5" tabindex="0" data-group="people" data-title="Workforce Blueprint" data-summary="Every transformation programme creates new capability, role, training and change requirements. The workforce blueprint must therefore be treated as a cross-cutting dependency."><h4>Workforce Blueprint (Cross-Cutting)</h4><ul><li>Affects all transformation programmes</li><li>Capability gaps</li><li>New or changed roles</li><li>Training and change-management impact</li></ul></div>
+        </div>
+      </div>
+      </div>
+      <div class="dep-detail" aria-live="polite">
+        <div class="dep-detail-icon">↗</div>
+        <div><h4 id="depDetailTitle">Explore the dependency map</h4><p id="depDetailText">Hover to see the 3D effect. Click any card to isolate it and read the management implication. Use the filters to focus on systems, governance or people dependencies.</p></div>
+      </div>
+    </section>
+  </div>
+
+  <section class="section">
+    <h2 class="title">5. HOME31 Prioritisation Criteria (Decision Guardrails)</h2>
+    <div class="criteria">
+      <div class="criterion"><div class="num">1</div><h3>Mandate & Necessity</h3><div class="big">⚖</div><p>Required by law, policy, risk exposure or institutional need</p></div>
+      <div class="criterion"><div class="num">2</div><h3>Strategic Contribution</h3><div class="big">◎</div><p>Directly advances HOME31 pillars or enterprise outcomes</p></div>
+      <div class="criterion"><div class="num">3</div><h3>Financial Affordability</h3><div class="big">$</div><p>Can LPPSA afford the initial and recurring cost?</p></div>
+      <div class="criterion"><div class="num">4</div><h3>Institutional Impact</h3><div class="big">🏛</div><p>Delivers material improvement to resilience, customer value, governance or capability</p></div>
+      <div class="criterion"><div class="num">5</div><h3>Urgency</h3><div class="big">◷</div><p>What risk or missed opportunity arises if it is delayed?</p></div>
+      <div class="criterion"><div class="num">6</div><h3>Readiness</h3><div class="big">☑</div><p>Are the scope, owner, business case and approach sufficiently clear?</p></div>
+      <div class="criterion"><div class="num">7</div><h3>Dependency</h3><div class="big">🔗</div><p>Does another initiative, platform or decision need to happen first?</p></div>
+      <div class="criterion"><div class="num">8</div><h3>Resource Capacity</h3><div class="big">♟♟</div><p>Are people, budget and delivery bandwidth available?</p></div>
+      <div class="criterion"><div class="num">9</div><h3>Duplication Risk</h3><div class="big">◯◯</div><p>Could this duplicate an existing or planned capability?</p></div>
+      <div class="criterion"><div class="num">10</div><h3>Measurability</h3><div class="big">◴</div><p>Can outcomes, benefits and KPIs be measured credibly?</p></div>
+    </div>
+  </section>
+
+  <div class="bottom">
+    <section class="section" style="margin-top:0">
+      <h2 class="title">6. Recommended CPS Action Plan (90 Days)</h2>
+      <div class="timeline">
+        <div class="step s1"><div class="day"><span><b>14</b>DAYS</span></div><div><h4>CAPTURE & STRUCTURE</h4><p>Collect decks, decisions and workshop outputs; extract initiatives, costs, KPIs and open issues; validate with HODs.</p></div><div class="output">OUTPUT<br>Retreat Proposal Inventory</div></div>
+        <div class="step s2"><div class="day"><span><b>30</b>DAYS</span></div><div><h4>CHALLENGE & RATIONALISE</h4><p>Validate the problem statement, owner, outcome and cost assumptions; identify duplicates, gaps and BAU items.</p></div><div class="output">OUTPUT<br>Consolidation & Gap Assessment Report</div></div>
+        <div class="step s3"><div class="day"><span><b>45</b>DAYS</span></div><div><h4>INTEGRATION WORKSHOPS</h4><p>Finance | Customer & Operations | Governance | Digital & Architecture | Workforce | KPI & Benefits.</p></div><div class="output">OUTPUT<br>Integrated Programme Architecture & Dependency Map</div></div>
+        <div class="step s4"><div class="day"><span><b>60</b>DAYS</span></div><div><h4>PRIORITISE & SEQUENCE</h4><p>Group initiatives into programmes, set priorities, identify dependencies, and assess affordability and delivery capacity.</p></div><div class="output">OUTPUT<br>Draft HOME31 Prioritised Portfolio 2027–2031</div></div>
+        <div class="step s5"><div class="day"><span><b>90</b>DAYS</span></div><div><h4>MANAGEMENT ENDORSEMENT</h4><p>Present the proposed portfolio, sponsors, sequencing, cost envelope and unresolved trade-offs for endorsement.</p></div><div class="output">OUTPUT<br>Management-Endorsed HOME31 Enterprise Portfolio</div></div>
+      </div>
+    </section>
+
+    <div>
+      <section class="section" style="margin-top:0">
+        <h2 class="title">7. HOME31 Enterprise Portfolio Structure (Example)</h2>
+        <div class="programme-grid">
+          <div class="programme"><h3>PROGRAMME 1<br>Financial Resilience & Shariah Sustainability</h3><ul><li>Funding diversification</li><li>Government support approach</li><li>Sustainability & gearing</li><li>TAHARA</li><li>MPSAS 41</li><li>Financial analytics</li></ul><div class="owner">Owner: CFO Division</div></div>
+          <div class="programme"><h3>PROGRAMME 2<br>Customer Experience Transformation</h3><ul><li>CX1 & CX2</li><li>Customer data platform</li><li>Knowledge management</li><li>Customer Super-Agent</li><li>Home Financing Specialist</li><li>Customer analytics</li></ul><div class="owner">Owner: CX Division</div></div>
+          <div class="programme"><h3>PROGRAMME 3<br>Digital Foundation & Enterprise Architecture</h3><ul><li>Cloud foundation & migration</li><li>Enterprise architecture</li><li>Cybersecurity</li><li>Integration & API</li><li>Data governance</li><li>SAP & LMS integration</li></ul><div class="owner">Owner: ICT Division</div></div>
+          <div class="programme"><h3>PROGRAMME 4<br>Governance, Risk, Compliance & Assurance</h3><ul><li>Governance model</li><li>DPIA & contract governance</li><li>ESG, TRACE & reporting</li><li>LENS & combined assurance</li><li>Compliance management</li><li>Audit modernisation</li></ul><div class="owner">Owner: Governance Division</div></div>
+          <div class="programme"><h3>PROGRAMME 5<br>Workforce & Leadership Transformation</h3><ul><li>Workforce planning</li><li>Future skills</li><li>Leadership pipeline</li><li>Performance management</li><li>Employee experience</li><li>Digital HR & culture</li></ul><div class="owner">Owner: HR Division</div></div>
+        </div>
+      </section>
+      <section class="section">
+        <h2 class="title">8. Accountability (RACI Summary)</h2>
+        <div class="raci">
+          <div class="role"><div class="big">♟</div><h4>CEO & Management</h4><p>Approve priorities, resolve trade-offs and endorse major commitments.</p></div>
+          <div class="role"><div class="big">★</div><h4>Programme Sponsor</h4><p>Provide authority, sponsorship and cross-divisional support.</p></div>
+          <div class="role"><div class="big">♟</div><h4>Head of Division</h4><p>Own the business outcome and remain accountable.</p></div>
+          <div class="role"><div class="big">⚙</div><h4>Initiative Owner</h4><p>Plan, coordinate and deliver the initiative.</p></div>
+          <div class="role"><div class="big">♟♟</div><h4>Support Functions</h4><p>Finance, ICT, HR, Risk, Legal and others provide specialist input and validation.</p></div>
+          <div class="role"><div class="big">▥</div><h4>CPS</h4><p>Facilitate consolidation, structure, alignment and coordination; CPS does not own divisional outcomes.</p></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <footer class="footer"><strong>◎ &nbsp; ULTIMATE OBJECTIVE</strong><span class="divider"></span><span>One direction → One portfolio → Clear programmes → Accountable owners → Realistic sequencing → Controlled investment → Measurable institutional outcomes</span><span class="brand">⌂ HOME31</span></footer>
+</main>
+
+<script>
+(() => {
+  const section = document.querySelector('.dependency');
+  if (!section) return;
+  const cards = [...section.querySelectorAll('.dep')];
+  const filters = [...section.querySelectorAll('.dep-filter')];
+  const layout = section.querySelector('.dep-layout');
+  const hub = section.querySelector('.center-node');
+  const title = section.querySelector('#depDetailTitle');
+  const text = section.querySelector('#depDetailText');
+  const defaultTitle = title.textContent;
+  const defaultText = text.textContent;
+
+  const resetFocus = () => {
+    cards.forEach(c => c.classList.remove('is-active','is-muted'));
+    title.textContent = defaultTitle;
+    text.textContent = defaultText;
+  };
+
+  const focusCard = (card) => {
+    const already = card.classList.contains('is-active');
+    resetFocus();
+    if (already) return;
+    cards.forEach(c => c.classList.toggle('is-muted', c !== card));
+    card.classList.add('is-active');
+    title.textContent = card.dataset.title;
+    text.textContent = card.dataset.summary;
+  };
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => focusCard(card));
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); focusCard(card); }
+    });
+    card.addEventListener('pointermove', e => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth < 701) return;
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - .5;
+      const y = (e.clientY - r.top) / r.height - .5;
+      card.style.transform = `rotateX(${-y*9}deg) rotateY(${x*11}deg) translateZ(12px)`;
+    });
+    card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+  });
+
+  filters.forEach(btn => btn.addEventListener('click', () => {
+    filters.forEach(b => b.classList.toggle('active', b === btn));
+    const value = btn.dataset.filter;
+    resetFocus();
+    cards.forEach(card => {
+      const show = value === 'all' || card.dataset.group.split(' ').includes(value);
+      card.hidden = !show;
+    });
+    title.textContent = value === 'all' ? defaultTitle : `${btn.textContent} dependencies`;
+    text.textContent = value === 'all' ? defaultText : `Showing the items most closely related to ${btn.textContent.toLowerCase()}. Select a card for the management implication.`;
+  }));
+
+  section.addEventListener('pointermove', e => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth < 701) return;
+    const r = section.getBoundingClientRect();
+    const x = (e.clientX-r.left)/r.width-.5;
+    const y = (e.clientY-r.top)/r.height-.5;
+    layout.style.transform = `rotateX(${-y*1.6}deg) rotateY(${x*2.2}deg)`;
+    hub.style.transform = `translateZ(22px) rotateY(${x*8}deg) rotateX(${-y*6}deg)`;
+  });
+  section.addEventListener('pointerleave', () => {
+    layout.style.transform = '';
+    hub.style.transform = '';
+  });
+})();
+</script>
+
+</body>
+</html>
