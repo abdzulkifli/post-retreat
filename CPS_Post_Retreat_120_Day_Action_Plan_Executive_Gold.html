@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CPS Post-Management Retreat | HOME31</title>
+<style>
+  :root{
+    --navy:#203864;--navy2:#3558a8;--ink:#1b2740;--line:#d7dfec;--soft:#f5f8fd;
+    --green:#2fa67a;--blue:#3d7ef0;--purple:#8067f5;--teal:#22a9b8;--orange:#f0a43d;--red:#e55f84;
+    --gold:#ffca63;--cyan:#45c4e6;--paper:#ffffff;--pagebg:#edf3fb;--cardglow:0 16px 38px rgba(30,55,105,.10);
+    --shadow:0 10px 30px rgba(20,42,86,.10);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(circle at top,#f8fbff 0,#eef4fb 45%,#e8eff9 100%);color:#172033;font-family:Arial,Helvetica,sans-serif;line-height:1.32}
+  .page{max-width:1500px;margin:auto;background:linear-gradient(180deg,#ffffff,#fbfcff);padding:14px;border:1px solid rgba(209,220,238,.85);border-radius:18px;box-shadow:0 24px 60px rgba(25,48,93,.14)}
+  .hero{background:linear-gradient(135deg,#1d2e52 0%,#294a89 55%,#37b0cf 100%);color:#fff;border-radius:18px;padding:22px 26px;text-align:center;position:relative;overflow:hidden;box-shadow:0 18px 40px rgba(30,55,105,.22)}
+  .hero h1{font-size:clamp(21px,2.35vw,35px);margin:0;font-weight:800;letter-spacing:.3px;text-shadow:0 2px 12px rgba(10,24,54,.22)}
+  .hero p{font-size:clamp(14px,1.4vw,20px);margin:8px 0 0;color:rgba(255,255,255,.96)}
+  .section{border:1px solid var(--line);border-radius:16px;padding:14px;margin-top:12px;background:linear-gradient(180deg,#ffffff 0%,#fbfdff 100%);box-shadow:0 10px 24px rgba(25,48,93,.05)}
+  .title{text-align:center;color:var(--ink);font-weight:800;font-size:18px;margin:0 0 12px;text-transform:uppercase;letter-spacing:.3px}
+  .grid{display:grid;gap:11px}
+  .p6{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .card{border:1.5px solid;border-radius:16px;overflow:hidden;background:linear-gradient(180deg,#ffffff,#fbfdff);min-width:0;box-shadow:0 10px 22px rgba(25,48,93,.06);transition:transform .2s ease,box-shadow .2s ease}
+  .card-head{display:flex;align-items:center;gap:10px;padding:12px;font-weight:800;font-size:16px;min-height:70px}
+  .icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;color:white;font-size:25px;flex:0 0 auto;box-shadow:0 8px 18px rgba(29,46,82,.18)}
+  .card ul{margin:0;padding:12px 18px 16px 30px;font-size:13.5px}.card li{margin:5px 0}
+  .green{border-color:#9de4cc}.green .card-head{background:linear-gradient(135deg,#eafaf4,#f5fffb);color:#15614a}.green .icon{background:linear-gradient(135deg,#239b73,#4bd3a6)}
+  .blue{border-color:#a9cbff}.blue .card-head{background:linear-gradient(135deg,#eef5ff,#f8fbff);color:#244f9d}.blue .icon{background:linear-gradient(135deg,#326ad8,#56a3ff)}
+  .purple{border-color:#c9bbff}.purple .card-head{background:linear-gradient(135deg,#f5f2ff,#fcfbff);color:#5b49c3}.purple .icon{background:linear-gradient(135deg,#7258ea,#9284ff)}
+  .teal{border-color:#9fe8ea}.teal .card-head{background:linear-gradient(135deg,#eefcfd,#fbffff);color:#167689}.teal .icon{background:linear-gradient(135deg,#1f98ab,#4cd1db)}
+  .orange{border-color:#ffd38f}.orange .card-head{background:linear-gradient(135deg,#fff6ea,#fffdfa);color:#a06113}.orange .icon{background:linear-gradient(135deg,#e6972b,#ffbc63)}
+  .red{border-color:#ffb6ca}.red .card-head{background:linear-gradient(135deg,#fff0f6,#fff8fb);color:#b44769}.red .icon{background:linear-gradient(135deg,#d9547b,#ff8db0)}
+
+  .inventory{display:grid;grid-template-columns:repeat(15,minmax(92px,1fr));overflow-x:auto;border-radius:16px;border:1px solid var(--line);box-shadow:0 8px 18px rgba(25,48,93,.05)}
+  .inv{min-width:92px;text-align:center;border-right:1px solid var(--line)}.inv:last-child{border-right:0}
+  .inv .top{background:linear-gradient(135deg,#203864,#3558a8 68%,#45c4e6);color:white;padding:8px 3px;font-size:25px;min-height:48px}
+  .inv strong{display:block;font-size:11px;color:var(--ink);padding:7px 4px;min-height:43px}
+  .inv p{font-size:10px;margin:0;padding:0 6px 10px;color:#4b5b78}
+
+  .split{display:grid;grid-template-columns:.92fr 1.08fr;gap:10px;margin-top:9px}
+  .category{display:grid;grid-template-columns:58px 1fr;margin-bottom:9px;border:1px solid;border-radius:14px;overflow:hidden;box-shadow:0 8px 18px rgba(25,48,93,.05)}
+  .category .letter{display:grid;place-items:center;color:#fff;font-weight:800;font-size:23px}
+  .category .text{padding:9px 12px}.category h3{font-size:13px;margin:0 0 2px}.category p{font-size:11px;margin:0}
+  .ca{border-color:#ffbfd0;background:linear-gradient(135deg,#fff6fa,#fffdfd)}.ca .letter{background:linear-gradient(135deg,#d6537d,#ff88ac)}.ca h3{color:#af4568}
+  .cb{border-color:#ffd79e;background:linear-gradient(135deg,#fff8ef,#fffdf8)}.cb .letter{background:linear-gradient(135deg,#e59a2f,#ffcb70)}.cb h3{color:#a36a1a}
+  .cc{border-color:#b4ead0;background:linear-gradient(135deg,#f4fcf8,#fbfffd)}.cc .letter{background:linear-gradient(135deg,#24946a,#51d5a0)}.cc h3{color:#1b7a58}
+  .cd{border-color:#b5cbff;background:linear-gradient(135deg,#f3f8ff,#fbfdff)}.cd .letter{background:linear-gradient(135deg,#2e66c8,#61a3ff)}.cd h3{color:#28539a}
+  .ce{border-color:#d2c0ff;background:linear-gradient(135deg,#f7f4ff,#fdfcff)}.ce .letter{background:linear-gradient(135deg,#6f55dd,#9b8aff)}.ce h3{color:#6653c6}
+
+  .dependency{
+    position:relative;
+    display:block;
+    background:radial-gradient(circle at var(--mx,50%) var(--my,45%),rgba(69,196,230,.18),transparent 34%),linear-gradient(180deg,#fdfefe 0%,#f7fbff 100%);
+    overflow:visible;
+    padding-bottom:14px;
+  }
+  .dep-layout{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 190px minmax(0,1fr);
+    gap:14px;
+    align-items:center;
+  }
+  .dep-col{display:grid;gap:12px;align-content:start}
+  .dep-col.right{grid-template-rows:repeat(3,minmax(0,auto))}
+  .center-stack{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+  .center-node{
+    position:static;
+    transform:none;
+    width:172px;
+    height:172px;
+    justify-self:center;
+    border-radius:50%;
+    background:linear-gradient(135deg,#203864 0%,#3558a8 55%,#45c4e6 100%);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-weight:800;
+    padding:14px;
+    box-shadow:0 18px 34px rgba(32,56,100,.24);
+  }
+  .center-text{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:2px;
+    line-height:1.08;
+    font-size:18px;
+    letter-spacing:.2px;
+  }
+  .center-text .line{display:block;width:100%;text-align:center}
+  .center-note{max-width:190px;text-align:center;font-size:11px;line-height:1.4;color:#46618d;font-weight:700}
+  .dep{
+    width:100%;
+    min-width:0;
+    border:1.5px solid;
+    border-radius:16px;
+    padding:12px 13px;
+    background:linear-gradient(180deg,#ffffff,#fbfdff);
+    font-size:11px;
+    line-height:1.42;
+    min-height:138px;
+    box-shadow:0 10px 20px rgba(20,44,80,.08);
+  }
+  .dep h4{margin:0 0 7px;font-size:12px;text-align:center;line-height:1.28;color:#24416f}.dep ul{margin:0;padding-left:18px}.dep li{margin:3px 0;overflow-wrap:anywhere;color:#465776}
+  .d1{border-color:#9acbf0;background:linear-gradient(180deg,#f6fbff,#fcfeff)}.d2{border-color:#9de4cc;background:linear-gradient(180deg,#f5fcf9,#fdfffe)}.d3{border-color:#c8bcff;background:linear-gradient(180deg,#f8f6ff,#fdfcff)}.d4{border-color:#ffd69a;background:linear-gradient(180deg,#fff8ef,#fffdf9)}.d5{border-color:#ffbfda;background:linear-gradient(180deg,#fff6fb,#fffdfd)}
+  .lines{display:none}
+
+  .criteria{display:grid;grid-template-columns:repeat(10,1fr);gap:7px}
+  .criterion{text-align:center;border:1px solid var(--line);border-radius:14px;padding:10px 8px;background:linear-gradient(180deg,#ffffff,#f8fbff);min-height:205px;box-shadow:0 8px 18px rgba(25,48,93,.05)}
+  .criterion .num{font-size:17px;font-weight:800;color:var(--ink)}.criterion h3{font-size:12px;color:var(--ink);min-height:44px;margin:3px 0}.criterion .big{font-size:36px;line-height:1;margin:4px 0 8px}.criterion p{font-size:10px;margin:0}
+
+  .bottom{display:grid;grid-template-columns:.84fr 1.16fr;gap:10px;margin-top:9px}
+  .timeline{position:relative;padding-left:86px}
+  .timeline:before{content:"";position:absolute;left:42px;top:30px;bottom:30px;width:4px;background:linear-gradient(180deg,#3558a8,#45c4e6,#ffca63)}
+  .step{position:relative;display:grid;grid-template-columns:1fr 155px;gap:12px;align-items:center;margin:12px 0;min-height:75px}
+  .day{position:absolute;left:-82px;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;color:white;text-align:center;font-size:11px;font-weight:800;border:4px solid white;box-shadow:0 2px 8px #ccd6e5}.day b{font-size:18px;display:block}
+  .s1 .day{background:linear-gradient(135deg,#2aa778,#57d8b3)}.s2 .day{background:linear-gradient(135deg,#325fd6,#59a8ff)}.s3 .day{background:linear-gradient(135deg,#7158e6,#a593ff)}.s4 .day{background:linear-gradient(135deg,#e19a2f,#ffd06e)}.s5 .day{background:linear-gradient(135deg,#203864,#45c4e6)}
+  .step h4{margin:0 0 3px;font-size:12px}.step p{margin:0;font-size:11px}.output{border:1px solid var(--line);border-radius:7px;padding:10px;text-align:center;font-size:11px;font-weight:700;background:#f8fafc}
+
+  .programme-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.programme{border:1.5px solid;border-radius:16px;overflow:hidden;box-shadow:0 10px 20px rgba(25,48,93,.06)}.programme h3{font-size:12px;text-align:center;padding:10px;margin:0;min-height:70px}.programme ul{font-size:10px;margin:0;padding:9px 12px 10px 22px;min-height:150px}.programme .owner{font-size:10px;text-align:center;font-weight:800;padding:7px;background:rgba(240,245,252,.92)}.programme:nth-child(1){border-color:#9de4cc}.programme:nth-child(1) h3{background:linear-gradient(135deg,#eefbf4,#fbfffd);color:#17684f}.programme:nth-child(2){border-color:#b2cfff}.programme:nth-child(2) h3{background:linear-gradient(135deg,#eff5ff,#fbfdff);color:#3058a2}.programme:nth-child(3){border-color:#c9bbff}.programme:nth-child(3) h3{background:linear-gradient(135deg,#f6f3ff,#fdfcff);color:#5f50c2}.programme:nth-child(4){border-color:#ffd59a}.programme:nth-child(4) h3{background:linear-gradient(135deg,#fff8ef,#fffdfa);color:#aa6f1e}.programme:nth-child(5){border-color:#ffbfd7}.programme:nth-child(5) h3{background:linear-gradient(135deg,#fff4fa,#fffdfd);color:#b55479}
+  .raci{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:8px}.role{text-align:center;border:1px solid var(--line);border-radius:14px;padding:9px 7px;box-shadow:0 8px 18px rgba(25,48,93,.05)}.role .big{font-size:27px}.role h4{font-size:10px;margin:5px 0}.role p{font-size:9px;margin:0;color:#4b5f80}
+  .footer{margin-top:12px;background:linear-gradient(135deg,#1d2e52 0%,#2e4a85 56%,#41b9d7 100%);color:#fff;border-radius:18px;padding:16px 20px;display:flex;align-items:center;gap:18px;font-size:16px;box-shadow:0 18px 36px rgba(30,55,105,.18)}.footer strong{font-size:19px;white-space:nowrap}.footer .divider{width:2px;height:35px;background:rgba(255,255,255,.42)}.brand{margin-left:auto;font-weight:900;font-size:21px}
+
+
+  /* Visual enhancement */
+  .hero::before{content:"";position:absolute;inset:auto -60px -60px auto;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.20),transparent 70%)}
+  .hero::after{content:"";position:absolute;inset:-90px auto auto -90px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.16),transparent 72%)}
+  .hero-pills{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .hero-pills span{display:inline-flex;align-items:center;justify-content:center;padding:7px 13px;border:1px solid rgba(255,255,255,.26);background:rgba(255,255,255,.15);box-shadow:inset 0 1px 0 rgba(255,255,255,.18);border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+  .intro-strip{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:10px;margin-top:10px}
+  .intro-card{border:1px solid var(--line);border-radius:14px;padding:12px 13px;background:linear-gradient(180deg,#ffffff,#f8fbff);box-shadow:0 10px 22px rgba(25,48,93,.06)}
+  .intro-card b{display:block;margin-bottom:6px;font-size:12px;text-transform:uppercase;color:#3458a4;letter-spacing:.45px}
+  .intro-card p{margin:0;font-size:12px;line-height:1.4}
+  .section{border:1px solid var(--line);border-radius:10px;padding:12px;margin-top:10px;background:linear-gradient(180deg,#fff,#fbfcff)}
+  .title{display:flex;align-items:center;justify-content:center;gap:12px;text-align:center;color:var(--ink);font-weight:800;font-size:18px;margin:0 0 12px;text-transform:uppercase;letter-spacing:.35px}
+  .title::before,.title::after{content:"";width:46px;height:4px;border-radius:999px;background:linear-gradient(90deg,#3f63a7,#45c4e6,#ffca63)}
+  .card-head{display:flex;align-items:center;gap:10px;padding:14px;font-weight:800;font-size:16px;min-height:78px}
+  .card-title{display:flex;flex-direction:column;min-width:0;max-width:100%;font-size:clamp(12px,.95vw,15px);line-height:1.16;letter-spacing:.12px;word-break:normal;hyphens:none}
+  .card-title .title-line{display:block;white-space:nowrap}
+  .blue .card-title{font-size:clamp(11.5px,.82vw,13.5px);letter-spacing:0}
+  .blue .card-head{gap:8px;padding-left:10px;padding-right:10px}
+  .output{border:1px solid #c9d2e2;border-radius:9px;padding:10px;text-align:center;font-size:11px;font-weight:700;background:linear-gradient(180deg,#ffffff,#eef4fb);box-shadow:0 4px 10px rgba(21,63,129,.06)}
+  .role{background:linear-gradient(180deg,#fff,#f8fbff)}
+
+  .portfolio-intro{max-width:920px;margin:-2px auto 14px;text-align:center;color:#526481;font-size:12px;line-height:1.5}
+
+  /* Interactive 3D dependency explorer — executive neon palette */
+  .dependency{--mx:50%;--my:45%;background:
+    radial-gradient(circle at var(--mx) var(--my),rgba(0,198,255,.13),transparent 28%),
+    linear-gradient(145deg,#f8fbff 0%,#eef5ff 50%,#f8fbff 100%);border-color:#b8c9e6}
+  .dep-toolbar{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0 0 16px}
+  .dep-filter{appearance:none;border:1px solid #aebfda;background:rgba(255,255,255,.88);color:#123967;border-radius:999px;padding:8px 14px;font-weight:800;font-size:11px;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;color .2s ease;backdrop-filter:blur(8px)}
+  .dep-filter:hover,.dep-filter:focus-visible{transform:translateY(-3px);box-shadow:0 12px 22px rgba(25,48,93,.14);outline:2px solid transparent}
+  .dep-filter.active{background:linear-gradient(135deg,#203864,#3558a8 58%,#45c4e6 100%);color:#fff;border-color:transparent;box-shadow:0 10px 20px rgba(53,88,168,.28)}
+  .dep-stage{perspective:1250px;perspective-origin:50% 45%;padding:4px}
+  .dep-layout{transform-style:preserve-3d;transition:transform .28s cubic-bezier(.2,.8,.2,1)}
+  .dep{position:relative;overflow:hidden;transform-style:preserve-3d;transition:transform .24s cubic-bezier(.2,.8,.2,1),box-shadow .24s ease,opacity .22s ease,filter .22s ease;cursor:pointer;will-change:transform;background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(246,250,255,.94));border-width:1px}
+  .dep::before{content:"";position:absolute;inset:0 auto 0 0;width:6px;background:var(--card-accent);box-shadow:0 0 18px var(--card-accent);transform:translateZ(6px)}
+  .dep::after{content:"CLICK TO EXPLORE";position:absolute;right:10px;bottom:8px;font-size:8px;letter-spacing:.55px;font-weight:900;color:var(--card-accent);opacity:0;transform:translateZ(20px);transition:.2s}
+  .dep:hover::after,.dep:focus-visible::after{opacity:1}
+  .dep:hover,.dep:focus-visible{box-shadow:0 22px 38px rgba(13,45,91,.20),0 0 0 1px color-mix(in srgb,var(--card-accent) 35%,transparent);z-index:3;outline:none}
+  .dep h4,.dep ul{transform:translateZ(24px)}
+  .dep h4{color:var(--card-dark)}
+  .d1{--card-accent:#00a6d6;--card-dark:#07567d;border-color:#8bd8eb;background:linear-gradient(145deg,#f7fdff,#eaf9fd)}
+  .d2{--card-accent:#00a878;--card-dark:#086548;border-color:#8edec5;background:linear-gradient(145deg,#f7fffc,#eafaf4)}
+  .d3{--card-accent:#7957d5;--card-dark:#4b328f;border-color:#b8a9e8;background:linear-gradient(145deg,#fcfaff,#f2edff)}
+  .d4{--card-accent:#f59e0b;--card-dark:#9a5b00;border-color:#f6c86b;background:linear-gradient(145deg,#fffdf8,#fff4dc)}
+  .d5{--card-accent:#e24a8d;--card-dark:#91305e;border-color:#efa2c5;background:linear-gradient(145deg,#fffafd,#fdebf4)}
+  .dep.is-active{transform:translateZ(32px) scale(1.035)!important;box-shadow:0 28px 48px rgba(8,39,93,.26),0 0 28px color-mix(in srgb,var(--card-accent) 30%,transparent);border-width:2px}
+  .dep.is-muted{opacity:.18;filter:grayscale(.55) blur(.2px);transform:scale(.94)!important}
+  .center-stack{transform-style:preserve-3d}
+  .center-node{position:relative;isolation:isolate;transform-style:preserve-3d;transition:transform .3s ease;background:radial-gradient(circle at 32% 28%,#18d4ff 0%,#0077d9 30%,#08275d 72%);border:2px solid rgba(255,255,255,.85);box-shadow:inset -18px -18px 32px rgba(1,16,52,.34),inset 10px 10px 22px rgba(255,255,255,.17),0 24px 42px rgba(8,39,93,.34),0 0 35px rgba(0,174,239,.28);animation:hubFloat 4s ease-in-out infinite}
+  .center-node::before,.center-node::after{content:"";position:absolute;border-radius:50%;inset:-14px;border:2px solid rgba(0,174,239,.26);z-index:-1;animation:ringPulse 3s ease-out infinite;box-shadow:0 0 20px rgba(0,174,239,.18)}
+  .center-node::after{inset:-29px;border-color:rgba(121,87,213,.23);animation-delay:1.15s}
+  .center-text{transform:translateZ(32px);text-shadow:0 3px 10px rgba(0,0,0,.35)}
+  .center-note{padding:8px 10px;border-radius:10px;background:rgba(255,255,255,.72);border:1px solid rgba(151,178,215,.6);backdrop-filter:blur(8px)}
+  .dep-detail{margin-top:16px;border:1px solid #c6daf6;border-radius:16px;background:linear-gradient(135deg,rgba(255,255,255,.98),rgba(244,249,255,.97));padding:13px 15px;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;box-shadow:0 14px 28px rgba(25,48,93,.10)}
+  .dep-detail-icon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#203864,#3558a8,#45c4e6);color:#fff;font-size:20px;font-weight:800;box-shadow:0 10px 18px rgba(53,88,168,.24)}
+  .dep-detail h4{margin:0 0 4px;color:#274777;font-size:13px}.dep-detail p{margin:0;font-size:11px;line-height:1.55;color:#4a5f82}
+  @keyframes hubFloat{0%,100%{transform:translateY(0) rotateX(0) rotateY(0)}50%{transform:translateY(-8px) rotateX(5deg) rotateY(-4deg)}}
+  @keyframes ringPulse{0%{transform:scale(.9);opacity:.75}75%,100%{transform:scale(1.16);opacity:0}}
+  @media (prefers-reduced-motion:reduce){.center-node,.center-node::before,.center-node::after{animation:none}.dep,.dep-layout,.center-node{transition:none}}
+  @media(max-width:700px){.dep-stage{perspective:none}.dep-layout{transform:none!important}.dep::after{display:none}.dep-detail{grid-template-columns:1fr}.dep-detail-icon{display:none}}
+
+
+  /* 120-Day CPS mobilisation roadmap */
+  .roadmap-bottom{display:block}
+  .roadmap-bottom > div{display:block}
+  .roadmap-bottom > div > .section:first-child{margin-top:10px!important}
+  .roadmap-section{
+    position:relative;
+    overflow:hidden;
+    border-color:#aabfe2;
+    background:
+      radial-gradient(circle at 8% 12%,rgba(69,196,230,.13),transparent 25%),
+      radial-gradient(circle at 92% 88%,rgba(128,103,245,.12),transparent 26%),
+      linear-gradient(160deg,#f9fbff 0%,#eef5ff 46%,#fbfdff 100%);
+  }
+  .roadmap-section::before{
+    content:"";position:absolute;inset:0;pointer-events:none;opacity:.28;
+    background-image:linear-gradient(rgba(40,82,145,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(40,82,145,.08) 1px,transparent 1px);
+    background-size:34px 34px;
+    mask-image:linear-gradient(180deg,#000,transparent 82%);
+  }
+  .roadmap-section > *{position:relative;z-index:1}
+  .roadmap-command{
+    display:grid;grid-template-columns:1fr auto;align-items:center;gap:18px;
+    margin:4px 0 14px;padding:16px 18px;border-radius:18px;color:#fff;
+    background:linear-gradient(118deg,#13294f 0%,#244e91 52%,#0ba8c5 100%);
+    box-shadow:0 18px 38px rgba(25,55,106,.24),inset 0 1px 0 rgba(255,255,255,.18);
+    overflow:hidden;isolation:isolate;
+  }
+  .roadmap-command::before{
+    content:"";position:absolute;width:220px;height:220px;border-radius:50%;right:10%;top:-150px;
+    background:radial-gradient(circle,rgba(255,255,255,.28),transparent 68%);animation:commandGlow 5s ease-in-out infinite;z-index:-1;
+  }
+  .roadmap-command::after{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(105deg,transparent 0%,rgba(255,255,255,.16) 45%,transparent 60%);
+    transform:translateX(-120%);animation:commandSweep 6s ease-in-out infinite;
+  }
+  .command-kicker{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:#9deeff}
+  .command-kicker::before{content:"";width:8px;height:8px;border-radius:50%;background:#7df2c8;box-shadow:0 0 14px #7df2c8;animation:statusPulse 1.8s ease-in-out infinite}
+  .command-copy strong{display:block;margin-top:5px;font-size:clamp(16px,1.55vw,24px);line-height:1.15;letter-spacing:.15px}
+  .command-copy p{margin:6px 0 0;max-width:800px;font-size:11.5px;line-height:1.5;color:rgba(255,255,255,.84)}
+  .roadmap-counter{min-width:130px;text-align:center;padding:10px 14px;border:1px solid rgba(255,255,255,.25);border-radius:16px;background:rgba(255,255,255,.11);backdrop-filter:blur(8px);box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
+  .roadmap-counter b{display:block;font-size:40px;line-height:.95;letter-spacing:-2px;text-shadow:0 4px 18px rgba(0,0,0,.25)}
+  .roadmap-counter span{display:block;margin-top:5px;font-size:9px;font-weight:900;letter-spacing:1.15px;text-transform:uppercase;color:#d9f8ff}
+
+  .roadmap-stage{position:relative;padding:46px 5px 6px}
+  .roadmap-flow{position:absolute;top:31px;left:8%;right:8%;height:12px;z-index:0}
+  .roadmap-track{position:absolute;inset:2px 0;height:8px;border-radius:999px;background:#cbd8ea;box-shadow:inset 0 2px 4px rgba(23,54,103,.18)}
+  .roadmap-progress{position:absolute;left:0;top:0;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,#2fa67a 0%,#3d7ef0 28%,#8067f5 52%,#f0a43d 76%,#e55f84 100%);box-shadow:0 0 18px rgba(61,126,240,.42);animation:roadmapFill 11s cubic-bezier(.45,0,.25,1) infinite}
+  .roadmap-runner{position:absolute;top:50%;left:0;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;transform:translate(-50%,-50%);background:#fff;color:#224a88;border:3px solid #49c5e3;box-shadow:0 8px 20px rgba(31,75,140,.26),0 0 0 6px rgba(69,196,230,.12);font-size:15px;animation:roadmapTravel 11s cubic-bezier(.45,0,.25,1) infinite}
+  .roadmap-phases{position:relative;z-index:1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}
+  .roadmap-phase{--phase:#3d7ef0;min-width:0;outline:none;cursor:pointer;transform-style:preserve-3d;transition:transform .25s ease,filter .25s ease,opacity .25s ease}
+  .roadmap-phase:nth-child(1){--phase:#2fa67a}.roadmap-phase:nth-child(2){--phase:#3d7ef0}.roadmap-phase:nth-child(3){--phase:#8067f5}.roadmap-phase:nth-child(4){--phase:#f0a43d}.roadmap-phase:nth-child(5){--phase:#e55f84}
+  .phase-marker{position:relative;width:74px;height:74px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;text-align:center;color:#fff;background:linear-gradient(145deg,color-mix(in srgb,var(--phase) 72%,#fff),color-mix(in srgb,var(--phase) 78%,#142c54));border:5px solid #f7fbff;box-shadow:0 11px 23px color-mix(in srgb,var(--phase) 28%,transparent),0 0 0 2px color-mix(in srgb,var(--phase) 38%,transparent);transition:transform .25s ease,box-shadow .25s ease}
+  .phase-marker span{font-size:8px;font-weight:900;letter-spacing:.7px;line-height:1.05;text-transform:uppercase}
+  .phase-marker b{display:block;font-size:23px;letter-spacing:-1px}
+  .phase-number{position:absolute;right:-5px;top:-5px;width:24px;height:24px;display:grid;place-items:center;border-radius:50%;background:#fff;color:var(--phase);font-size:9px;font-weight:900;box-shadow:0 5px 12px rgba(16,43,84,.18)}
+  .phase-card{position:relative;min-height:244px;padding:14px 13px 12px;border:1px solid color-mix(in srgb,var(--phase) 35%,#d4deec);border-radius:17px;background:linear-gradient(155deg,rgba(255,255,255,.99),color-mix(in srgb,var(--phase) 7%,#f8fbff));box-shadow:0 12px 25px rgba(28,57,105,.09);overflow:hidden;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+  .phase-card::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:linear-gradient(90deg,var(--phase),color-mix(in srgb,var(--phase) 45%,#fff));box-shadow:0 0 14px color-mix(in srgb,var(--phase) 40%,transparent)}
+  .phase-card::after{content:"";position:absolute;width:95px;height:95px;border-radius:50%;right:-52px;bottom:-52px;background:radial-gradient(circle,color-mix(in srgb,var(--phase) 16%,transparent),transparent 70%)}
+  .phase-label{display:inline-flex;padding:5px 8px;border-radius:999px;background:color-mix(in srgb,var(--phase) 11%,#fff);color:color-mix(in srgb,var(--phase) 78%,#203864);font-size:8px;font-weight:900;letter-spacing:.8px;text-transform:uppercase}
+  .phase-card h4{margin:10px 0 7px;font-size:12.5px;line-height:1.22;color:#203864;text-transform:uppercase}
+  .phase-card p{margin:0;font-size:10.3px;line-height:1.45;color:#4b5e7e}
+  .phase-output{margin-top:11px;padding-top:10px;border-top:1px dashed color-mix(in srgb,var(--phase) 35%,#ccd6e4);font-size:9.6px;line-height:1.38;color:#253e68}
+  .phase-output strong{display:block;margin-bottom:3px;color:var(--phase);font-size:8px;letter-spacing:.8px;text-transform:uppercase}
+  .roadmap-phase:hover .phase-card,.roadmap-phase:focus-visible .phase-card,.roadmap-phase.is-current .phase-card{transform:translateY(-8px) rotateX(2deg);border-color:var(--phase);box-shadow:0 24px 40px rgba(25,54,103,.17),0 0 22px color-mix(in srgb,var(--phase) 18%,transparent)}
+  .roadmap-phase:hover .phase-marker,.roadmap-phase:focus-visible .phase-marker,.roadmap-phase.is-current .phase-marker{transform:translateY(-4px) scale(1.08);box-shadow:0 16px 29px color-mix(in srgb,var(--phase) 38%,transparent),0 0 0 7px color-mix(in srgb,var(--phase) 12%,transparent)}
+  .roadmap-phase.is-dim{opacity:.80;filter:saturate(.88)}
+
+  .roadmap-message{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;margin-top:13px;padding:12px 14px;border:1px solid #b8cbe6;border-radius:15px;background:rgba(255,255,255,.78);backdrop-filter:blur(8px);box-shadow:0 10px 22px rgba(25,48,93,.08)}
+  .roadmap-message-icon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#203864,#3558a8,#45c4e6);color:#fff;font-size:21px;box-shadow:0 9px 18px rgba(35,75,137,.25)}
+  .roadmap-message strong{display:block;color:#244779;font-size:11px;text-transform:uppercase;letter-spacing:.35px}
+  .roadmap-message p{margin:3px 0 0;color:#526582;font-size:10.5px;line-height:1.45}
+  .roadmap-outcomes{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+  .roadmap-outcome{display:flex;align-items:center;gap:9px;padding:9px 10px;border:1px solid #d2ddea;border-radius:12px;background:linear-gradient(180deg,#fff,#f6f9fd);font-size:9px;font-weight:800;color:#365078;text-transform:uppercase;letter-spacing:.25px}
+  .roadmap-outcome b{width:27px;height:27px;flex:0 0 auto;display:grid;place-items:center;border-radius:9px;background:#e8f0fb;color:#284f8f;font-size:12px}
+
+  @keyframes roadmapFill{0%,5%{width:0}82%,100%{width:100%}}
+  @keyframes roadmapTravel{0%,5%{left:0;transform:translate(-50%,-50%) rotate(0deg)}82%,100%{left:100%;transform:translate(-50%,-50%) rotate(360deg)}}
+  @keyframes commandSweep{0%,54%{transform:translateX(-120%)}75%,100%{transform:translateX(130%)}}
+  @keyframes commandGlow{0%,100%{transform:scale(.9);opacity:.55}50%{transform:scale(1.15);opacity:1}}
+  @keyframes statusPulse{0%,100%{transform:scale(.78);opacity:.65}50%{transform:scale(1.15);opacity:1}}
+
+  @media(max-width:1100px){
+    .roadmap-phases{grid-template-columns:repeat(2,minmax(0,1fr))}.roadmap-flow{display:none}.roadmap-stage{padding-top:8px}.phase-card{min-height:210px}.roadmap-outcomes{grid-template-columns:repeat(2,1fr)}
+    .roadmap-phase:last-child{grid-column:1/-1;max-width:50%;width:100%;justify-self:center}
+  }
+  @media(max-width:700px){
+    .roadmap-command{grid-template-columns:1fr}.roadmap-counter{min-width:0}.roadmap-counter b{font-size:34px}.roadmap-phases{grid-template-columns:1fr}.roadmap-phase:last-child{grid-column:auto;max-width:none}.phase-card{min-height:0}.phase-marker{width:66px;height:66px}.roadmap-outcomes{grid-template-columns:1fr}.roadmap-message{grid-template-columns:1fr}.roadmap-message-icon{display:none}
+  }
+  @media(prefers-reduced-motion:reduce){.roadmap-progress,.roadmap-runner,.roadmap-command::before,.roadmap-command::after,.command-kicker::before{animation:none}.roadmap-progress{width:100%}.roadmap-runner{left:100%}}
+  @media print{.roadmap-progress{width:100%;animation:none}.roadmap-runner{display:none}.roadmap-command::before,.roadmap-command::after{display:none}.roadmap-phase,.phase-card,.phase-marker{transform:none!important}}
+
+  @media(max-width:1100px){.p6{grid-template-columns:repeat(3,1fr)}.criteria{grid-template-columns:repeat(5,1fr)}.split,.bottom,.intro-strip{grid-template-columns:1fr}.dep-layout{grid-template-columns:1fr 180px 1fr}.programme-grid{grid-template-columns:repeat(3,1fr)}.raci{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:700px){body{background:#fff}.page{padding:6px}.hero{padding:13px 10px}.hero-pills{gap:6px}.hero-pills span{font-size:11px;padding:5px 10px}.title{font-size:14px}.title::before,.title::after{width:24px}.p6{grid-template-columns:1fr}.card-head{min-height:auto}.card-title{font-size:15px}.blue .card-title{font-size:14px}.criteria{grid-template-columns:repeat(2,1fr)}.criterion{min-height:185px}.dep-layout{grid-template-columns:1fr;gap:10px}.dep-col{gap:8px}.center-stack{order:-1}.center-node{width:100%;height:auto;min-height:96px;border-radius:10px}.center-text{font-size:16px}.center-note{max-width:none}.dep{width:100%;min-height:auto}.timeline{padding-left:68px}.timeline:before{left:30px}.day{left:-65px;width:52px;height:52px}.step{grid-template-columns:1fr}.programme-grid{grid-template-columns:1fr}.programme ul{min-height:auto}.raci{grid-template-columns:repeat(2,1fr)}.footer{flex-wrap:wrap;font-size:12px}.footer strong{white-space:normal;font-size:15px}.brand{margin-left:0}.inventory{grid-template-columns:repeat(15,100px)}}
+  @media print{body{background:white}.page{max-width:none;box-shadow:none}.section{break-inside:avoid}.inventory{overflow:visible;grid-template-columns:repeat(15,1fr)}.inv{min-width:0}.footer{break-inside:avoid}}
+
+
+  /* Executive entrance overlay */
+  body{overflow-x:hidden}
+  body:not(.intro-complete){overflow:hidden}
+  .page{
+    opacity:0;
+    transform:translateY(24px) scale(.99);
+    transition:opacity 1.2s ease, transform 1.2s cubic-bezier(.2,.8,.2,1);
+  }
+  body.intro-complete .page{opacity:1;transform:none}
+  .intro-gate{
+    position:fixed;inset:0;z-index:9999;display:grid;place-items:center;overflow:hidden;
+    background:radial-gradient(circle at 50% 20%,rgba(25,217,255,.18),transparent 24%),linear-gradient(160deg,#07142f 0%,#10284d 42%,#0a5072 100%);
+    color:#fff;isolation:isolate;transition:opacity 1.15s ease,visibility 1.15s ease,transform 1.15s ease;
+  }
+  body.intro-complete .intro-gate{opacity:0;visibility:hidden;transform:scale(1.03)}
+  .intro-gate::before,.intro-gate::after{content:"";position:absolute;inset:-10%;pointer-events:none}
+  .intro-gate::before{
+    background:
+      radial-gradient(circle at 20% 30%,rgba(69,196,230,.24),transparent 16%),
+      radial-gradient(circle at 82% 24%,rgba(255,202,99,.20),transparent 18%),
+      radial-gradient(circle at 68% 78%,rgba(128,103,245,.22),transparent 18%),
+      radial-gradient(circle at 26% 78%,rgba(34,169,184,.18),transparent 20%);
+    filter:blur(12px);animation:introAurora 18s ease-in-out infinite alternate;
+  }
+  .intro-gate::after{
+    background-image:linear-gradient(rgba(145,188,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(145,188,255,.08) 1px,transparent 1px);
+    background-size:48px 48px;mask-image:linear-gradient(180deg,rgba(0,0,0,.92),rgba(0,0,0,.25));
+    animation:gridShift 24s linear infinite;
+  }
+  .intro-particles,.intro-streams,.intro-rings,.intro-network,.intro-circuits,.intro-scan{position:absolute;inset:0;pointer-events:none}
+  .intro-particle{position:absolute;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.65);box-shadow:0 0 12px rgba(120,226,255,.9);animation:introFloat linear infinite}
+  .intro-network{opacity:.82;mix-blend-mode:screen}
+  .intro-network svg{width:100%;height:100%}
+  .intro-network .net-line{fill:none;stroke:rgba(105,213,255,.28);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:8 12;animation:dashFlow 18s linear infinite}
+  .intro-network .net-line.gold{stroke:rgba(255,202,99,.26);animation-duration:26s}
+  .intro-network .net-line.soft{stroke:rgba(168,156,255,.18);stroke-dasharray:4 14;animation-duration:22s}
+  .intro-network .net-node{fill:rgba(189,242,255,.95);filter:drop-shadow(0 0 7px rgba(108,230,255,.7));animation:nodePulse 4.5s ease-in-out infinite}
+  .intro-network .net-node.gold{fill:rgba(255,215,124,.95);filter:drop-shadow(0 0 8px rgba(255,206,99,.55))}
+  .intro-network .net-node.alt{fill:rgba(170,160,255,.92);filter:drop-shadow(0 0 8px rgba(140,121,255,.55))}
+  .intro-circuits{opacity:.72}
+  .intro-circuit{position:absolute;height:2px;border-radius:999px;background:linear-gradient(90deg,rgba(0,0,0,0),rgba(96,228,255,.88) 45%,rgba(255,205,115,.65) 72%,rgba(0,0,0,0));box-shadow:0 0 12px rgba(96,228,255,.35);animation:circuitTravel linear infinite}
+  .intro-circuit::after{content:"";position:absolute;right:10%;top:50%;width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.92);transform:translateY(-50%);box-shadow:0 0 14px rgba(122,229,255,.85)}
+  .intro-scan{opacity:.42;mix-blend-mode:screen}
+  .intro-scan::before{content:"";position:absolute;inset:-18% -12%;background:linear-gradient(100deg,transparent 24%,rgba(113,231,255,.02) 40%,rgba(113,231,255,.28) 50%,rgba(255,207,117,.17) 57%,transparent 72%);transform:translateX(-70%) skewX(-18deg);animation:scanSweep 7.8s ease-in-out infinite}
+  .intro-stream{position:absolute;height:2px;border-radius:999px;background:linear-gradient(90deg,transparent,rgba(122,229,255,.9),transparent);opacity:.56;filter:drop-shadow(0 0 8px rgba(122,229,255,.5));animation:introStream linear infinite}
+  .intro-stream.gold{background:linear-gradient(90deg,transparent,rgba(255,210,120,.92),transparent)}
+  .intro-ring{position:absolute;left:50%;top:50%;width:280px;height:280px;border-radius:50%;border:1px solid rgba(160,218,255,.22);transform:translate(-50%,-50%);animation:ringSpin 26s linear infinite}
+  .intro-ring.r2{width:390px;height:390px;border-color:rgba(255,202,99,.18);animation-duration:34s;animation-direction:reverse}
+  .intro-ring.r3{width:520px;height:520px;border-color:rgba(128,103,245,.16);animation-duration:42s}
+  .intro-panel{
+    position:relative;z-index:2;width:min(980px,92vw);padding:34px 30px 28px;border-radius:28px;
+    background:linear-gradient(180deg,rgba(255,255,255,.11),rgba(255,255,255,.06));
+    border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(16px);box-shadow:0 24px 60px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.15);
+    text-align:center;
+  }
+  .intro-badge{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.10);font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase}
+  .intro-badge .pulse{width:10px;height:10px;border-radius:50%;background:#7be8ff;box-shadow:0 0 0 0 rgba(123,232,255,.55);animation:introPulse 1.7s ease-out infinite}
+  .intro-title{margin:16px 0 10px;font-size:clamp(28px,5vw,52px);line-height:1.03;font-weight:900;letter-spacing:.3px;text-shadow:0 6px 24px rgba(1,13,43,.34)}
+  .intro-sub{max-width:760px;margin:0 auto;color:rgba(255,255,255,.88);font-size:clamp(13px,1.4vw,18px);line-height:1.55}
+  .intro-sequence{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin:18px auto 8px}
+  .intro-sequence span{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;animation:sequenceGlow 8s ease-in-out infinite}
+  .intro-sequence span:nth-child(2){animation-delay:.8s}.intro-sequence span:nth-child(3){animation-delay:1.6s}.intro-sequence span:nth-child(4){animation-delay:2.4s}.intro-sequence span:nth-child(5){animation-delay:3.2s}
+  .intro-counter{display:flex;justify-content:center;align-items:end;gap:18px;flex-wrap:wrap;margin:20px 0 10px}
+  .intro-counter .big{font-size:clamp(54px,10vw,110px);font-weight:900;line-height:.9;background:linear-gradient(180deg,#fff,#8de7ff 58%,#ffcf76 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 10px 26px rgba(0,0,0,.16)}
+  .intro-counter .label{text-align:left;padding-bottom:10px}
+  .intro-counter .label strong{display:block;font-size:clamp(18px,2vw,24px);letter-spacing:.8px}
+  .intro-counter .label span{display:block;font-size:12px;color:rgba(255,255,255,.78);text-transform:uppercase;letter-spacing:.85px}
+  .intro-milestones{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:8px auto 18px}
+  .intro-milestones span{min-width:76px;padding:8px 10px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.14);font-size:11px;font-weight:800;letter-spacing:.4px}
+  .intro-tagline{margin:0 auto 20px;max-width:760px;font-size:14px;line-height:1.6;color:#e6f7ff}
+  .intro-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+  .intro-btn{appearance:none;border:0;border-radius:999px;padding:14px 22px;font-weight:900;font-size:13px;letter-spacing:.5px;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+  .intro-btn.primary{background:linear-gradient(135deg,#ffffff,#d8f5ff 42%,#ffd58a 100%);color:#0d2a56;box-shadow:0 18px 36px rgba(5,17,47,.24)}
+  .intro-btn.secondary{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.2)}
+  .intro-btn:hover,.intro-btn:focus-visible{transform:translateY(-3px);outline:none}
+  .intro-foot{margin-top:16px;font-size:11px;letter-spacing:.7px;color:rgba(255,255,255,.72);text-transform:uppercase}
+  .intro-progress{position:relative;max-width:720px;height:4px;margin:18px auto 0;border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden}
+  .intro-progress span{display:block;width:0;height:100%;border-radius:999px;background:linear-gradient(90deg,#53d8ff,#ffcf76);box-shadow:0 0 16px rgba(83,216,255,.55);transition:width .35s ease}
+  .intro-reveal{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.9px;text-transform:uppercase;color:rgba(255,255,255,.68);animation:revealBob 2.6s ease-in-out infinite}
+  .intro-reveal::before{content:"";width:10px;height:10px;border-right:2px solid rgba(255,255,255,.7);border-bottom:2px solid rgba(255,255,255,.7);transform:rotate(45deg)}
+  @keyframes introAurora{0%{transform:translate3d(-2%,-1%,0) scale(1)}50%{transform:translate3d(2%,2%,0) scale(1.04)}100%{transform:translate3d(-1%,3%,0) scale(1.08)}}
+  @keyframes gridShift{0%{transform:translateY(0)}100%{transform:translateY(48px)}}
+  @keyframes dashFlow{0%{stroke-dashoffset:0}100%{stroke-dashoffset:-280}}
+  @keyframes nodePulse{0%,100%{transform:scale(1);opacity:.82}50%{transform:scale(1.24);opacity:1}}
+  @keyframes circuitTravel{0%{transform:translateX(-16vw);opacity:0}12%{opacity:.72}86%{opacity:.66}100%{transform:translateX(118vw);opacity:0}}
+  @keyframes scanSweep{0%,12%{transform:translateX(-70%) skewX(-18deg);opacity:0}22%{opacity:1}58%{opacity:.85}76%,100%{transform:translateX(92%) skewX(-18deg);opacity:0}}
+  @keyframes introFloat{0%{transform:translate3d(0,0,0) scale(.85);opacity:0}12%{opacity:1}88%{opacity:.8}100%{transform:translate3d(var(--tx),var(--ty),0) scale(1.35);opacity:0}}
+  @keyframes introStream{0%{transform:translateX(-14vw);opacity:0}10%{opacity:.58}90%{opacity:.54}100%{transform:translateX(114vw);opacity:0}}
+  @keyframes ringSpin{0%{transform:translate(-50%,-50%) rotate(0)}100%{transform:translate(-50%,-50%) rotate(360deg)}}
+  @keyframes introPulse{0%{box-shadow:0 0 0 0 rgba(123,232,255,.55)}70%{box-shadow:0 0 0 14px rgba(123,232,255,0)}100%{box-shadow:0 0 0 0 rgba(123,232,255,0)}}
+  @keyframes sequenceGlow{0%,18%,100%{background:rgba(255,255,255,.08);transform:translateY(0);box-shadow:none}8%{background:rgba(123,232,255,.2);transform:translateY(-2px);box-shadow:0 0 16px rgba(123,232,255,.2)}}
+  @keyframes revealBob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+  @media(max-width:700px){
+    .intro-panel{padding:24px 16px 22px;border-radius:22px}
+    .intro-counter{gap:10px}.intro-counter .label{text-align:center;padding-bottom:0}
+    .intro-actions{flex-direction:column}.intro-btn{width:100%}
+    .intro-milestones span{min-width:unset;flex:1 1 calc(33.333% - 10px)}
+    .intro-reveal{bottom:18px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .intro-gate::before,.intro-gate::after,.intro-particle,.intro-stream,.intro-ring,.intro-reveal,.intro-badge .pulse,.intro-sequence span,.intro-network .net-line,.intro-network .net-node,.intro-circuit,.intro-scan::before{animation:none!important}
+    .page,.intro-gate,.intro-btn{transition:none!important}
+  }
+
+
+
+  /* V3 — Executive Cybernetic Blue + Strategic Gold palette */
+  :root{
+    --midnight:#06152d;
+    --executive-navy:#102a4e;
+    --strategic-blue:#2f67b2;
+    --electric-cyan:#42d8ff;
+    --muted-gold:#d9b76a;
+    --enterprise-teal:#2dbeaa;
+    --controlled-violet:#7468d9;
+    --ice-white:#f4f8fd;
+    --slate-blue:#607493;
+    --deep-ink:#15233b;
+    --navy:#102a4e;
+    --navy2:#2f67b2;
+    --ink:#15233b;
+    --line:#d4dfec;
+    --soft:#f4f8fd;
+    --green:#2dbeaa;
+    --blue:#3f83e5;
+    --purple:#7468d9;
+    --teal:#20a7b5;
+    --orange:#e7a83c;
+    --red:#d9b76a;
+    --gold:#d9b76a;
+    --cyan:#42d8ff;
+    --pagebg:#e5edf7;
+  }
+
+  body{
+    background:
+      radial-gradient(circle at 50% -8%,rgba(66,216,255,.10),transparent 26%),
+      radial-gradient(circle at 92% 14%,rgba(116,104,217,.07),transparent 22%),
+      linear-gradient(180deg,#f8fbff 0%,#eef4fa 46%,#e5edf7 100%);
+    color:var(--deep-ink);
+  }
+  .page{
+    background:linear-gradient(180deg,#ffffff 0%,#f9fbfe 100%);
+    border-color:rgba(190,205,224,.88);
+    box-shadow:0 28px 70px rgba(16,42,78,.15);
+  }
+  .hero{
+    background:
+      radial-gradient(circle at 82% 18%,rgba(66,216,255,.24),transparent 22%),
+      linear-gradient(128deg,#06152d 0%,#102a4e 48%,#2f67b2 78%,#218ba8 100%);
+    box-shadow:0 22px 48px rgba(6,21,45,.28);
+  }
+  .hero h1{text-shadow:0 4px 18px rgba(0,0,0,.32)}
+  .hero-pills span{background:rgba(255,255,255,.10);border-color:rgba(196,235,255,.25)}
+  .hero-pills span:last-child{border-color:rgba(217,183,106,.62);background:rgba(217,183,106,.16);color:#fff5dc}
+
+  .section,.intro-card,.criterion,.role{
+    background:linear-gradient(180deg,#ffffff 0%,#f8fbfe 100%);
+    border-color:#d4dfec;
+  }
+  .title::before,.title::after{background:linear-gradient(90deg,#2f67b2,#42d8ff 58%,#d9b76a)}
+  .portfolio-intro,.role p,.criterion p{color:#607493}
+
+  /* Enterprise priorities — restrained white cards with controlled accents */
+  .card{background:linear-gradient(180deg,#ffffff,#f9fbfe);border-color:#d6e1ee!important;box-shadow:0 12px 26px rgba(16,42,78,.075);position:relative}
+  .card::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--priority);z-index:2}
+  .card .card-head{background:linear-gradient(180deg,#ffffff,#f5f9fd)!important;color:#15233b!important}
+  .card .icon{background:linear-gradient(145deg,color-mix(in srgb,var(--priority) 86%,#fff),color-mix(in srgb,var(--priority) 82%,#102a4e))!important;box-shadow:0 10px 22px color-mix(in srgb,var(--priority) 25%,transparent)}
+  .green{--priority:#2dbeaa}.blue{--priority:#3f83e5}.purple{--priority:#7468d9}.teal{--priority:#20a7b5}.orange{--priority:#e7a83c}.red{--priority:#d9b76a}
+  .red .icon{color:#102a4e!important;background:linear-gradient(145deg,#efd99c,#d9b76a)!important}
+
+  /* Inventory and classification */
+  .inventory{border-color:#cdd9e8;background:#fff}
+  .inv .top{background:linear-gradient(145deg,#06152d,#102a4e 52%,#2f67b2 84%,#42d8ff);}
+  .category{background:linear-gradient(135deg,#fff,#f8fbfe)!important;border-color:#d4dfec!important}
+  .category .letter{background:linear-gradient(145deg,#102a4e,#2f67b2 64%,#42d8ff)!important}
+  .category h3{color:#17345f!important}
+  .category.ce .letter{background:linear-gradient(145deg,#9d7c36,#d9b76a)!important;color:#102a4e}
+  .category.ce h3{color:#8a682a!important}
+
+  /* Dependency explorer */
+  .dependency{
+    background:
+      radial-gradient(circle at var(--mx) var(--my),rgba(66,216,255,.13),transparent 30%),
+      radial-gradient(circle at 82% 86%,rgba(116,104,217,.08),transparent 23%),
+      linear-gradient(145deg,#f8fbff 0%,#eef4fa 50%,#f9fbfe 100%);
+    border-color:#bacbe0;
+  }
+  .dep-filter.active{background:linear-gradient(135deg,#06152d,#102a4e 52%,#2f67b2 82%,#42d8ff)}
+  .center-node{background:radial-gradient(circle at 31% 27%,#63e7ff 0%,#2f67b2 31%,#102a4e 72%,#06152d 100%);box-shadow:inset -18px -18px 32px rgba(1,16,52,.40),inset 10px 10px 22px rgba(255,255,255,.18),0 26px 48px rgba(6,21,45,.36),0 0 38px rgba(66,216,255,.24)}
+  .d1{--card-accent:#42bde8;--card-dark:#145d7d;border-color:#aadceb;background:linear-gradient(145deg,#fbfeff,#eef9fd)}
+  .d2{--card-accent:#2dbeaa;--card-dark:#176a5e;border-color:#a7e0d7;background:linear-gradient(145deg,#fbfffe,#eefbf8)}
+  .d3{--card-accent:#7468d9;--card-dark:#50479a;border-color:#c3bde9;background:linear-gradient(145deg,#fdfcff,#f3f1fc)}
+  .d4{--card-accent:#e7a83c;--card-dark:#8d641d;border-color:#efd49c;background:linear-gradient(145deg,#fffefa,#fff7e8)}
+  .d5{--card-accent:#6f7fae;--card-dark:#40527f;border-color:#c5cde0;background:linear-gradient(145deg,#fdfdff,#f2f5fa)}
+  .dep-detail-icon{background:linear-gradient(145deg,#06152d,#102a4e,#2f67b2 72%,#42d8ff)}
+
+  /* Criteria */
+  .criterion{box-shadow:0 10px 22px rgba(16,42,78,.055)}
+  .criterion .num{color:#2f67b2}
+  .criterion:nth-child(5) .big,.criterion:nth-child(9) .big{color:#e7a83c}
+  .criterion:nth-child(10) .big{color:#d9b76a}
+
+  /* 120-day roadmap — deliberate progression toward endorsement */
+  .roadmap-section{
+    border-color:#aebfd5;
+    background:
+      radial-gradient(circle at 7% 10%,rgba(45,190,170,.10),transparent 24%),
+      radial-gradient(circle at 94% 90%,rgba(217,183,106,.12),transparent 28%),
+      linear-gradient(160deg,#fbfdff 0%,#edf4fa 48%,#fafcff 100%);
+  }
+  .roadmap-command{background:linear-gradient(118deg,#06152d 0%,#102a4e 52%,#2f67b2 82%,#248da7 100%)}
+  .roadmap-phase:nth-child(1){--phase:#2dbeaa}
+  .roadmap-phase:nth-child(2){--phase:#3f83e5}
+  .roadmap-phase:nth-child(3){--phase:#7468d9}
+  .roadmap-phase:nth-child(4){--phase:#e7a83c}
+  .roadmap-phase:nth-child(5){--phase:#d9b76a}
+  .roadmap-phase:nth-child(5) .phase-marker{color:#102a4e;border-color:#fffaf0;animation:endorsementPulse 2.8s ease-in-out infinite}
+  .roadmap-phase:nth-child(5) .phase-card{border-color:rgba(217,183,106,.72);background:linear-gradient(180deg,#fffefa,#fff8e9)}
+  .roadmap-phase:nth-child(5) .phase-label{color:#8b692e}
+  .roadmap-flow{background:linear-gradient(90deg,#2dbeaa,#3f83e5,#7468d9,#e7a83c,#d9b76a)}
+  .roadmap-progress{background:linear-gradient(90deg,#2dbeaa,#3f83e5,#7468d9,#e7a83c,#d9b76a)}
+  .roadmap-runner{background:#fff;box-shadow:0 0 0 5px rgba(217,183,106,.18),0 0 20px #d9b76a}
+  .roadmap-message{border-color:#c9d7e7;background:linear-gradient(135deg,#ffffff,#f2f7fc)}
+  .roadmap-message-icon{background:linear-gradient(145deg,#102a4e,#2f67b2,#42d8ff)}
+  @keyframes endorsementPulse{0%,100%{box-shadow:0 13px 26px rgba(217,183,106,.28),0 0 0 2px rgba(217,183,106,.35)}50%{box-shadow:0 18px 34px rgba(217,183,106,.42),0 0 0 9px rgba(217,183,106,.10),0 0 28px rgba(217,183,106,.22)}}
+
+  /* Programme structure and accountability */
+  .programme{background:#fff;border-color:#d5e0ec!important}
+  .programme h3{background:linear-gradient(180deg,#ffffff,#f4f8fc)!important;color:#17345f!important;border-top:4px solid var(--programme)}
+  .programme:nth-child(1){--programme:#2dbeaa}.programme:nth-child(2){--programme:#3f83e5}.programme:nth-child(3){--programme:#7468d9}.programme:nth-child(4){--programme:#20a7b5}.programme:nth-child(5){--programme:#d9b76a}
+  .programme:nth-child(5) h3{color:#805f26!important}
+  .programme .owner{background:#eef4fa;color:#29476e}
+  .role .big{color:#2f67b2}.role:last-child .big{color:#d9b76a}
+
+  .footer{
+    background:
+      radial-gradient(circle at 88% 20%,rgba(217,183,106,.22),transparent 22%),
+      linear-gradient(125deg,#06152d 0%,#102a4e 55%,#2f67b2 82%,#1f7f96 100%);
+    box-shadow:0 20px 42px rgba(6,21,45,.26);
+  }
+  .footer strong,.footer .brand{color:#fff1c8}
+
+  /* Entrance — deeper executive cybernetic treatment */
+  .intro-gate{
+    background:
+      radial-gradient(circle at 50% 18%,rgba(66,216,255,.17),transparent 27%),
+      radial-gradient(circle at 82% 72%,rgba(116,104,217,.13),transparent 28%),
+      radial-gradient(circle at 18% 78%,rgba(217,183,106,.07),transparent 25%),
+      linear-gradient(145deg,#041126 0%,#0b2343 48%,#123e5e 100%);
+  }
+  .intro-gate::before{
+    background:
+      radial-gradient(circle at 18% 28%,rgba(66,216,255,.20),transparent 17%),
+      radial-gradient(circle at 83% 23%,rgba(217,183,106,.14),transparent 19%),
+      radial-gradient(circle at 70% 80%,rgba(116,104,217,.18),transparent 20%),
+      radial-gradient(circle at 27% 78%,rgba(45,190,170,.13),transparent 22%);
+  }
+  .intro-panel{background:linear-gradient(180deg,rgba(255,255,255,.105),rgba(255,255,255,.055));border-color:rgba(185,231,255,.20);box-shadow:0 30px 72px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.15)}
+  .intro-title{background:linear-gradient(180deg,#ffffff 0%,#ddf7ff 48%,#a8e8fa 72%,#e4c983 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;filter:drop-shadow(0 8px 20px rgba(0,0,0,.25))}
+  .intro-sequence span{border-color:rgba(178,225,248,.15)}
+  .intro-sequence span:last-child{border-color:rgba(217,183,106,.45);color:#ffe8ac}
+  .intro-counter .big{background:linear-gradient(180deg,#ffffff,#9cecff 55%,#d9b76a 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .intro-milestones span{border-color:rgba(194,228,246,.15)}
+  .intro-milestones span:last-child{border-color:rgba(217,183,106,.52);color:#ffeab9;background:linear-gradient(180deg,rgba(217,183,106,.18),rgba(255,255,255,.05))}
+  .intro-btn.primary{background:linear-gradient(135deg,#ffffff,#d9f5ff 42%,#dfc37f 100%);color:#0b2343}
+  .intro-progress span{background:linear-gradient(90deg,#2dbeaa,#3f83e5,#7468d9,#e7a83c,#d9b76a)}
+  .intro-network .net-line{stroke:rgba(66,216,255,.26)}
+  .intro-network .net-line.gold{stroke:rgba(217,183,106,.28)}
+  .intro-network .net-line.soft{stroke:rgba(116,104,217,.19)}
+  .intro-network .net-node.gold{fill:rgba(232,203,137,.96)}
+  .intro-circuit{background:linear-gradient(90deg,transparent,rgba(66,216,255,.82) 46%,rgba(217,183,106,.70) 74%,transparent)}
+  .intro-scan::before{background:linear-gradient(100deg,transparent 24%,rgba(66,216,255,.02) 40%,rgba(66,216,255,.25) 50%,rgba(217,183,106,.14) 58%,transparent 72%)}
+
+  @media(max-width:700px){
+    .card::before{height:3px}
+    .roadmap-phase:nth-child(5) .phase-marker{animation:none}
+  }
+
+</style>
+</head>
+
+<body>
+  <div class="intro-gate" id="introGate" aria-label="CPS Mobilisation Entrance">
+    <div class="intro-particles" id="introParticles"></div>
+    <div class="intro-streams" id="introStreams"></div>
+    <div class="intro-network" id="introNetwork" aria-hidden="true">
+      <svg viewBox="0 0 1440 900" preserveAspectRatio="none">
+        <path class="net-line" d="M90 190 L300 140 L520 260 L720 200 L970 280 L1210 230 L1340 320"/>
+        <path class="net-line soft" d="M120 670 L300 560 L470 610 L650 470 L860 520 L1090 430 L1280 470"/>
+        <path class="net-line gold" d="M220 330 L420 420 L590 360 L760 460 L940 390 L1170 530"/>
+        <path class="net-line" d="M210 760 L380 690 L560 760 L720 640 L890 700 L1080 650 L1260 740"/>
+        <path class="net-line soft" d="M160 110 L250 270 L400 240 L560 140 L760 120 L950 170 L1130 120 L1280 210"/>
+        <circle class="net-node" cx="90" cy="190" r="4.5"/>
+        <circle class="net-node" cx="300" cy="140" r="5"/>
+        <circle class="net-node alt" cx="520" cy="260" r="5.4"/>
+        <circle class="net-node" cx="720" cy="200" r="6"/>
+        <circle class="net-node gold" cx="970" cy="280" r="5.6"/>
+        <circle class="net-node" cx="1210" cy="230" r="4.8"/>
+        <circle class="net-node alt" cx="1340" cy="320" r="5.2"/>
+        <circle class="net-node" cx="120" cy="670" r="5"/>
+        <circle class="net-node gold" cx="300" cy="560" r="6"/>
+        <circle class="net-node" cx="470" cy="610" r="4.7"/>
+        <circle class="net-node alt" cx="650" cy="470" r="5.6"/>
+        <circle class="net-node" cx="860" cy="520" r="5.1"/>
+        <circle class="net-node gold" cx="1090" cy="430" r="5.8"/>
+        <circle class="net-node" cx="1280" cy="470" r="5"/>
+        <circle class="net-node gold" cx="220" cy="330" r="5.4"/>
+        <circle class="net-node" cx="420" cy="420" r="5"/>
+        <circle class="net-node alt" cx="590" cy="360" r="4.8"/>
+        <circle class="net-node gold" cx="760" cy="460" r="6.2"/>
+        <circle class="net-node" cx="940" cy="390" r="5.2"/>
+        <circle class="net-node alt" cx="1170" cy="530" r="5.4"/>
+      </svg>
+    </div>
+    <div class="intro-circuits" id="introCircuits" aria-hidden="true"></div>
+    <div class="intro-scan" aria-hidden="true"></div>
+    <div class="intro-rings" aria-hidden="true">
+      <span class="intro-ring r1"></span>
+      <span class="intro-ring r2"></span>
+      <span class="intro-ring r3"></span>
+    </div>
+    <div class="intro-panel">
+      <div class="intro-badge"><span class="pulse"></span> POST-MANAGEMENT RETREAT · ENTERPRISE MOBILISATION</div>
+      <h1 class="intro-title">THE RETREAT HAS ENDED.<br>THE ENTERPRISE MOVEMENT BEGINS.</h1>
+      <p class="intro-sub">Transforming retreat proposals into one coordinated, prioritised and delivery-ready HOME31 enterprise portfolio.</p>
+      <div class="intro-sequence" aria-label="Mobilisation sequence">
+        <span>Consolidate</span>
+        <span>Challenge</span>
+        <span>Connect</span>
+        <span>Prioritise</span>
+        <span>Mobilise</span>
+      </div>
+      <div class="intro-counter" aria-live="polite">
+        <div class="big" id="introCounter">0</div>
+        <div class="label"><strong>DAYS</strong><span>Five decision gates to one enterprise direction</span></div>
+      </div>
+      <div class="intro-milestones">
+        <span>Day 14<br>Capture</span>
+        <span>Day 30<br>Challenge</span>
+        <span>Day 60<br>Integrate</span>
+        <span>Day 90<br>Prioritise</span>
+        <span>Day 120<br>Endorse</span>
+      </div>
+      <p class="intro-tagline">120 DAYS · FIVE DECISION GATES · ONE HOME31 PORTFOLIO</p>
+      <div class="intro-actions">
+        <button class="intro-btn primary" id="enterJourney" type="button">ENTER THE 120-DAY JOURNEY →</button>
+        <button class="intro-btn secondary" id="skipIntro" type="button">SKIP INTRO</button>
+      </div>
+      <div class="intro-progress" aria-hidden="true"><span id="introProgressBar"></span></div>
+      <div class="intro-foot">CPS Mobilises Direction, Structure, Sequencing and Accountability</div>
+    </div>
+    <div class="intro-reveal">Launch the portfolio</div>
+  </div>
+<main class="page">
+
+  <header class="hero">
+    <h1>CPS POST-MANAGEMENT RETREAT: CONSOLIDATE → CHALLENGE → CONNECT → PRIORITISE</h1>
+    <p>Turn retreat proposals into a cohesive, prioritised and delivery-ready HOME31 enterprise portfolio</p>
+    <div class="hero-pills">
+      <span>Consolidate</span>
+      <span>Challenge</span>
+      <span>Connect</span>
+      <span>Prioritise</span>
+      <span>Deliver</span>
+    </div>
+  </header>
+
+  <section class="intro-strip">
+    <div class="intro-card"><b>Purpose</b><p>Convert retreat inputs into one structured enterprise portfolio with clear programmes, priorities, dependencies and delivery sequencing.</p></div>
+    <div class="intro-card"><b>Role of CPS</b><p>Facilitate consolidation, structure, alignment and coordination. Ownership, decisions and delivery remain with the respective divisions.</p></div>
+    <div class="intro-card"><b>Expected Output</b><p>One enterprise view of initiatives, accountable owners, resource implications, measurable KPIs and a realistic implementation roadmap.</p></div>
+  </section>
+
+  <section class="section">
+    <h2 class="title">1. Overall Synthesis – Six Enterprise Priorities</h2>
+    <div class="grid p6">
+      <article class="card green"><div class="card-head"><span class="icon">$</span><span class="card-title"><span class="title-line">FINANCIAL</span><span class="title-line">RESILIENCE</span></span></div><ul><li>Funding model scenarios</li><li>Government support approach</li><li>2027 budget envelope</li><li>Sustainability ratios</li><li>TAHARA / Shariah transition</li></ul></article>
+      <article class="card blue"><div class="card-head"><span class="icon">👥</span><span class="card-title"><span class="title-line">CUSTOMER</span><span class="title-line">TRANSFORMATION</span></span></div><ul><li>CX1 omnichannel journey</li><li>CX2 self-service journey</li><li>Customer Super-Agent</li><li>Home Financing Specialist</li><li>Customer data platform</li><li>Knowledge management & insights</li></ul></article>
+      <article class="card purple"><div class="card-head"><span class="icon">☁</span><span class="card-title"><span class="title-line">DIGITAL</span><span class="title-line">FOUNDATION</span></span></div><ul><li>Cloud migration roadmap</li><li>Enterprise architecture</li><li>Systems integration & API</li><li>Cybersecurity</li><li>Data platform & analytics</li></ul></article>
+      <article class="card teal"><div class="card-head"><span class="icon">🛡</span><span class="card-title"><span class="title-line">GOVERNANCE &amp;</span><span class="title-line">ASSURANCE</span></span></div><ul><li>DPIA & PDPA readiness</li><li>Contract governance</li><li>ESG reporting & oversight</li><li>TRACE governance</li><li>LENS combined assurance</li><li>Compliance & audit modernisation</li></ul></article>
+      <article class="card orange"><div class="card-head"><span class="icon">👥</span><span class="card-title"><span class="title-line">WORKFORCE</span><span class="title-line">READINESS</span></span></div><ul><li>Workforce planning</li><li>Performance & productivity</li><li>Learning & future skills</li><li>Rewards & recognition</li><li>Employee experience</li><li>Digital HR & culture</li></ul></article>
+      <article class="card red"><div class="card-head"><span class="icon">◎</span><span class="card-title"><span class="title-line">EXECUTION</span><span class="title-line">DISCIPLINE</span></span></div><ul><li>Clear sponsorship & ownership</li><li>Portfolio prioritisation</li><li>Resource planning</li><li>Dependencies & sequencing</li><li>Measurable KPIs</li><li>HOME31 enterprise monitoring</li></ul></article>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="title">2. CPS First Responsibility: Create One Enterprise Initiative Inventory</h2>
+    <div class="inventory">
+      <div class="inv"><div class="top">◇</div><strong>Initiative Name</strong><p>One clear and consistent initiative name</p></div>
+      <div class="inv"><div class="top">?</div><strong>Strategic Problem</strong><p>What institutional problem does it solve?</p></div>
+      <div class="inv"><div class="top">◎</div><strong>HOME31 Alignment</strong><p>Pillar, enterprise outcome & corporate ambition</p></div>
+      <div class="inv"><div class="top">♟</div><strong>Proposed Sponsor</strong><p>Management sponsor / champion</p></div>
+      <div class="inv"><div class="top">♟</div><strong>Accountable Owner</strong><p>Division or department accountable for delivery</p></div>
+      <div class="inv"><div class="top">♟♟</div><strong>Supporting Departments</strong><p>ICT, HR, Finance, Risk, Legal & others</p></div>
+      <div class="inv"><div class="top">◉</div><strong>Intended Outcome</strong><p>Expected enterprise or departmental outcome</p></div>
+      <div class="inv"><div class="top">◇</div><strong>Deliverables</strong><p>Key outputs or milestones by year</p></div>
+      <div class="inv"><div class="top">▣</div><strong>Timeline</strong><p>Start date, milestones, go-live & BAU</p></div>
+      <div class="inv"><div class="top">●</div><strong>Cost</strong><p>CAPEX, OPEX, manpower and recurring cost</p></div>
+      <div class="inv"><div class="top">🔗</div><strong>Dependencies & sequencing</strong><p>Systems, policies, data, people & approvals</p></div>
+      <div class="inv"><div class="top">⚠</div><strong>Risks</strong><p>Delivery, policy, data, procurement, legal & change risks</p></div>
+      <div class="inv"><div class="top">◴</div><strong>KPI</strong><p>Outcome, delivery and performance measures</p></div>
+      <div class="inv"><div class="top">☑</div><strong>Decision Status</strong><p>Approved, conditional, requires further study or pending decision</p></div>
+      <div class="inv"><div class="top">↗</div><strong>Readiness Level</strong><p>Concept, assessed, business case, approved or execution-ready</p></div>
+    </div>
+  </section>
+
+  <div class="split">
+    <section class="section" style="margin-top:0">
+      <h2 class="title">3. Classify Proposals into Five Portfolio Types</h2>
+      <p class="portfolio-intro">After the initiative inventory is complete, classify each proposal once according to its primary purpose. This prevents the same initiative from appearing in several categories.</p>
+      <div class="category ca"><div class="letter">A</div><div class="text"><h3>ENTERPRISE STRATEGIC PROGRAMMES</h3><p>Enterprise-wide programmes with significant cross-divisional impact and shared outcomes (e.g. Financial Sustainability, Customer Transformation, Digital Foundation, Workforce Transformation, Governance Stewardship, Data & Analytics and TAHARA).</p></div></div>
+      <div class="category cb"><div class="letter">B</div><div class="text"><h3>MANDATORY GOVERNANCE / COMPLIANCE INITIATIVES</h3><p>Initiatives required by law, regulation, policy, audit, risk or institutional obligation (e.g. DPIA, cybersecurity, contract governance, ESG reporting and compliance management).</p></div></div>
+      <div class="category cc"><div class="letter">C</div><div class="text"><h3>ENABLING PROGRAMMES</h3><p>Shared capabilities that enable several programmes (e.g. Enterprise Architecture, cloud foundation, data governance, change management, workforce capability and the HOME31 Platform).</p></div></div>
+      <div class="category cd"><div class="letter">D</div><div class="text"><h3>DEPARTMENTAL IMPROVEMENTS</h3><p>Department-focused or BAU improvements that strengthen operations without becoming separate enterprise programmes (e.g. SOPs, reporting, training and workflow improvements).</p></div></div>
+      <div class="category ce"><div class="letter">E</div><div class="text"><h3>PROPOSALS REQUIRING FURTHER MANAGEMENT DECISION</h3><p>Proposals that require further analysis or Management direction before they can be classified and sequenced (e.g. government support assumptions, TAHARA options, organisation structure, cloud model and major CX investment).</p></div></div>
+    </section>
+
+    <section class="section dependency" style="margin-top:0">
+      <h2 class="title">4. Identify Duplication Risks, Overlaps & Dependencies</h2>
+      <p class="portfolio-intro">Once proposals are classified, examine shared systems, data, people, governance and sequencing requirements before prioritisation.</p>
+      <div class="dep-toolbar" role="group" aria-label="Dependency filters">
+        <button class="dep-filter active" type="button" data-filter="all">Show All</button>
+        <button class="dep-filter" type="button" data-filter="systems">Systems</button>
+        <button class="dep-filter" type="button" data-filter="governance">Governance</button>
+        <button class="dep-filter" type="button" data-filter="people">People</button>
+      </div>
+      <div class="dep-stage">
+      <div class="dep-layout">
+        <div class="dep-col left">
+          <div class="dep d1" tabindex="0" data-group="systems governance" data-title="Governance Systems & Tools" data-summary="Several governance, assurance and tracking solutions may overlap in capability, data capture, dashboards and reporting. Rationalise them into a coordinated governance architecture before further investment."><h4>🛡 Governance Systems &amp; Tools</h4><ul><li>LENS</li><li>TRACE</li><li>Compliance management system</li><li>Contract governance tools</li><li>Audit tools &amp; analytics</li><li>ESG reporting dashboards</li><li>DPIA trackers</li><li>HOME31 platform</li></ul></div>
+          <div class="dep d4" tabindex="0" data-group="governance" data-title="CMS Naming Conflict" data-summary="The same acronym can refer to different functions. Standardising names, abbreviations and ownership will reduce confusion in governance papers, systems and reporting."><h4>⚠ CMS Naming Conflict</h4><ul><li>Contract Management Section (Legal)</li><li>Compliance Management System (Governance)</li><li>Standardise naming and abbreviations (e.g. CGS vs CMS)</li></ul></div>
+        </div>
+        <div class="center-stack">
+          <div class="center-node"><div class="center-text"><span class="line">KEY</span><span class="line">OVERLAPS &amp;</span><span class="line">DEPENDENCIES</span></div></div>
+          <div class="center-note">Areas requiring consolidation, clearer sequencing, stronger integration and naming clarity across the portfolio.</div>
+        </div>
+        <div class="dep-col right">
+          <div class="dep d2" tabindex="0" data-group="systems" data-title="CX Transformation Stack" data-summary="CX1, CX2, the Customer Super-Agent, customer data, knowledge management and analytics should be designed as one connected customer capability rather than separate projects."><h4>◉ CX Transformation Stack</h4><ul><li>CX1 and CX2</li><li>Customer Super-Agent</li><li>Home Financing Specialist</li><li>Customer data platform</li><li>Knowledge management</li><li>AI-enabled dashboards</li></ul></div>
+          <div class="dep d3" tabindex="0" data-group="systems" data-title="Enterprise Platforms & Architecture" data-summary="Cloud, SAP, LMS, CX platforms, security and integration share architectural dependencies. Enterprise Architecture should govern sequencing, interfaces, data and technology standards."><h4>⬡ Enterprise Platforms &amp; Architecture</h4><ul><li>Cloud migration roadmap</li><li>Customer experience systems</li><li>SAP S/4HANA and LMS</li><li>Enterprise architecture</li><li>Security and integration</li></ul></div>
+          <div class="dep d5" tabindex="0" data-group="people" data-title="Workforce Blueprint" data-summary="Every transformation programme creates new capability, role, training and change requirements. The workforce blueprint must therefore be treated as a cross-cutting dependency."><h4>◆ Workforce Blueprint (Cross-Cutting)</h4><ul><li>Affects all transformation programmes</li><li>Capability gaps</li><li>New or changed roles</li><li>Training and change-management impact</li></ul></div>
+        </div>
+      </div>
+      </div>
+      <div class="dep-detail" aria-live="polite">
+        <div class="dep-detail-icon">↗</div>
+        <div><h4 id="depDetailTitle">Explore the dependency map</h4><p id="depDetailText">Hover to see the 3D effect. Click any card to isolate it and read the management implication. Use the filters to focus on systems, governance or people-related dependencies.</p></div>
+      </div>
+    </section>
+  </div>
+
+  <section class="section">
+    <h2 class="title">5. Apply HOME31 Prioritisation Criteria</h2>
+    <p class="portfolio-intro">Score initiatives only after classification and dependency analysis so that prioritisation reflects the full enterprise context.</p>
+    <div class="criteria">
+      <div class="criterion"><div class="num">1</div><h3>Mandate & Necessity</h3><div class="big">⚖</div><p>Required by law, policy, risk exposure or institutional need</p></div>
+      <div class="criterion"><div class="num">2</div><h3>Strategic Contribution</h3><div class="big">◎</div><p>Directly advances HOME31 pillars or enterprise outcomes</p></div>
+      <div class="criterion"><div class="num">3</div><h3>Financial Affordability</h3><div class="big">$</div><p>Can LPPSA afford the initial and recurring cost?</p></div>
+      <div class="criterion"><div class="num">4</div><h3>Institutional Impact</h3><div class="big">🏛</div><p>Delivers material improvement to resilience, customer value, governance or capability</p></div>
+      <div class="criterion"><div class="num">5</div><h3>Urgency</h3><div class="big">◷</div><p>What risk or missed opportunity arises if it is delayed?</p></div>
+      <div class="criterion"><div class="num">6</div><h3>Readiness</h3><div class="big">☑</div><p>Are the scope, owner, business case and approach sufficiently clear?</p></div>
+      <div class="criterion"><div class="num">7</div><h3>Dependency</h3><div class="big">🔗</div><p>Does another initiative, platform or decision need to happen first?</p></div>
+      <div class="criterion"><div class="num">8</div><h3>Resource Capacity</h3><div class="big">♟♟</div><p>Are people, budget and delivery bandwidth available?</p></div>
+      <div class="criterion"><div class="num">9</div><h3>Duplication Risk</h3><div class="big">◯◯</div><p>Could this duplicate an existing or planned capability?</p></div>
+      <div class="criterion"><div class="num">10</div><h3>Measurability</h3><div class="big">◴</div><p>Can outcomes, benefits and KPIs be measured credibly?</p></div>
+    </div>
+  </section>
+
+  <div class="bottom roadmap-bottom">
+    <section class="section roadmap-section" style="margin-top:0">
+      <h2 class="title">6. Recommended CPS Action Plan — 120-Day Mobilisation</h2>
+      <p class="portfolio-intro">A disciplined movement from retreat ideas to an endorsed, sequenced and delivery-ready HOME31 enterprise portfolio. CPS drives the process; accountable divisions own the substance, decisions and delivery.</p>
+
+      <div class="roadmap-command">
+        <div class="command-copy">
+          <span class="command-kicker">Portfolio Mobilisation in Motion</span>
+          <strong>FROM RETREAT INPUTS → TO ENTERPRISE DECISIONS → TO EXECUTION READINESS</strong>
+          <p>The 120 days are not a waiting period. Each phase produces a management-ready output, closes uncertainty and moves the portfolio toward accountable execution.</p>
+        </div>
+        <div class="roadmap-counter"><b>120</b><span>Days to Mobilise</span></div>
+      </div>
+
+      <div class="roadmap-stage" aria-label="CPS 120-day action plan">
+        <div class="roadmap-flow" aria-hidden="true"><div class="roadmap-track"><div class="roadmap-progress"></div><div class="roadmap-runner">➤</div></div></div>
+        <div class="roadmap-phases">
+          <article class="roadmap-phase" tabindex="0" data-phase="1">
+            <div class="phase-marker"><span>By Day<b>14</b></span><i class="phase-number">01</i></div>
+            <div class="phase-card">
+              <span class="phase-label">Capture the truth</span>
+              <h4>Capture & Structure</h4>
+              <p>Collect retreat decks, decisions, workshop outputs and supporting evidence. Extract each initiative, owner, intended outcome, cost, KPI, dependency and unresolved issue; validate the captured intent with Heads of Division.</p>
+              <div class="phase-output"><strong>Decision Output</strong>Single Consolidated Enterprise Initiative Inventory</div>
+            </div>
+          </article>
+
+          <article class="roadmap-phase" tabindex="0" data-phase="2">
+            <div class="phase-marker"><span>By Day<b>30</b></span><i class="phase-number">02</i></div>
+            <div class="phase-card">
+              <span class="phase-label">Challenge assumptions</span>
+              <h4>Validate & Rationalise</h4>
+              <p>Test the strategic problem, ownership, expected benefit, scope and cost assumptions. Separate HOME31 initiatives from BAU, expose gaps, remove duplication and identify proposals requiring further Management direction.</p>
+              <div class="phase-output"><strong>Decision Output</strong>Validated Portfolio, Gap Register & Rationalisation Findings</div>
+            </div>
+          </article>
+
+          <article class="roadmap-phase" tabindex="0" data-phase="3">
+            <div class="phase-marker"><span>By Day<b>60</b></span><i class="phase-number">03</i></div>
+            <div class="phase-card">
+              <span class="phase-label">Connect the enterprise</span>
+              <h4>Integration Labs</h4>
+              <p>Run focused integration labs across Finance, Customer & Operations, Governance, Digital & Architecture, Workforce, and KPI & Benefits. Connect shared systems, data, policy, people, approvals and programme dependencies.</p>
+              <div class="phase-output"><strong>Decision Output</strong>Integrated Programme Architecture & Enterprise Dependency Map</div>
+            </div>
+          </article>
+
+          <article class="roadmap-phase" tabindex="0" data-phase="4">
+            <div class="phase-marker"><span>By Day<b>90</b></span><i class="phase-number">04</i></div>
+            <div class="phase-card">
+              <span class="phase-label">Decide what moves first</span>
+              <h4>Prioritise & Sequence</h4>
+              <p>Score initiatives against mandate, impact, affordability, urgency, readiness and delivery capacity. Build programme waves, identify funding and resource envelopes, and define the decisions or business cases required before mobilisation.</p>
+              <div class="phase-output"><strong>Decision Output</strong>Draft Prioritised HOME31 Portfolio 2027–2031 & Delivery Waves</div>
+            </div>
+          </article>
+
+          <article class="roadmap-phase" tabindex="0" data-phase="5">
+            <div class="phase-marker"><span>By Day<b>120</b></span><i class="phase-number">05</i></div>
+            <div class="phase-card">
+              <span class="phase-label">Endorse & mobilise</span>
+              <h4>Management Decision & Launch</h4>
+              <p>Present the proposed portfolio, accountable sponsors, sequencing, resource implications, risk trade-offs and unresolved choices for Management endorsement. Translate the decision into a governed mobilisation pulse for initiative owners.</p>
+              <div class="phase-output"><strong>Decision Output</strong>Management-Endorsed HOME31 Portfolio & Mobilisation Mandate</div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="roadmap-message" aria-live="polite">
+        <div class="roadmap-message-icon">↗</div>
+        <div><strong id="roadmapMessageTitle">Movement principle: every phase must close uncertainty</strong><p id="roadmapMessageText">Select a phase to spotlight its role. The journey progresses from evidence, to challenge, to enterprise integration, to priority decisions, and finally to accountable mobilisation.</p></div>
+      </div>
+      <div class="roadmap-outcomes">
+        <div class="roadmap-outcome"><b>1</b>One verified inventory</div>
+        <div class="roadmap-outcome"><b>2</b>One integrated portfolio</div>
+        <div class="roadmap-outcome"><b>3</b>Clear decision gates</div>
+        <div class="roadmap-outcome"><b>4</b>Owners ready to mobilise</div>
+      </div>
+    </section>
+
+    <div>
+      <section class="section" style="margin-top:0">
+        <h2 class="title">7. HOME31 Enterprise Portfolio Structure (Example)</h2>
+        <div class="programme-grid">
+          <div class="programme"><h3>PROGRAMME 1<br>Financial Resilience & Shariah Sustainability</h3><ul><li>Funding diversification</li><li>Government support approach</li><li>Sustainability & gearing</li><li>TAHARA</li><li>MPSAS 41</li><li>Financial analytics</li></ul><div class="owner">Owner: CFO Division</div></div>
+          <div class="programme"><h3>PROGRAMME 2<br>Customer Experience Transformation</h3><ul><li>CX1 & CX2</li><li>Customer data platform</li><li>Knowledge management</li><li>Customer Super-Agent</li><li>Home Financing Specialist</li><li>Customer analytics</li></ul><div class="owner">Owner: CX Division</div></div>
+          <div class="programme"><h3>PROGRAMME 3<br>Digital Foundation & Enterprise Architecture</h3><ul><li>Cloud foundation & migration</li><li>Enterprise architecture</li><li>Cybersecurity</li><li>Integration & API</li><li>Data governance</li><li>SAP & LMS integration</li></ul><div class="owner">Owner: ICT Division</div></div>
+          <div class="programme"><h3>PROGRAMME 4<br>Governance, Risk, Compliance & Assurance</h3><ul><li>Governance model</li><li>DPIA & contract governance</li><li>ESG, TRACE & reporting</li><li>LENS & combined assurance</li><li>Compliance management</li><li>Audit modernisation</li></ul><div class="owner">Owner: Governance Division</div></div>
+          <div class="programme"><h3>PROGRAMME 5<br>Workforce & Leadership Transformation</h3><ul><li>Workforce planning</li><li>Future skills</li><li>Leadership pipeline</li><li>Performance management</li><li>Employee experience</li><li>Digital HR & culture</li></ul><div class="owner">Owner: HR Division</div></div>
+        </div>
+      </section>
+      <section class="section">
+        <h2 class="title">8. Accountability and Roles</h2>
+        <div class="raci">
+          <div class="role"><div class="big">♟</div><h4>CEO & Management</h4><p>Approve priorities, resolve trade-offs and endorse major commitments.</p></div>
+          <div class="role"><div class="big">★</div><h4>Programme Sponsor</h4><p>Provide authority, sponsorship and cross-divisional support.</p></div>
+          <div class="role"><div class="big">♟</div><h4>Head of Division</h4><p>Own the business outcome and remain accountable.</p></div>
+          <div class="role"><div class="big">⚙</div><h4>Initiative Owner</h4><p>Plan, coordinate and deliver the initiative.</p></div>
+          <div class="role"><div class="big">♟♟</div><h4>Support Functions</h4><p>Finance, ICT, HR, Risk, Legal and others provide specialist input and validation.</p></div>
+          <div class="role"><div class="big">▥</div><h4>CPS</h4><p>Facilitate consolidation, structure, alignment and coordination; CPS does not own divisional outcomes.</p></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <footer class="footer"><strong>◎ &nbsp; ULTIMATE OBJECTIVE</strong><span class="divider"></span><span>One direction → One portfolio → Clear programmes → Accountable owners → Realistic sequencing → Disciplined investment → Measurable institutional outcomes</span><span class="brand">⌂ HOME31</span></footer>
+</main>
+
+
+<script>
+(() => {
+  const section = document.querySelector('.dependency');
+  if (!section) return;
+  const cards = [...section.querySelectorAll('.dep')];
+  const filters = [...section.querySelectorAll('.dep-filter')];
+  const layout = section.querySelector('.dep-layout');
+  const hub = section.querySelector('.center-node');
+  const title = section.querySelector('#depDetailTitle');
+  const text = section.querySelector('#depDetailText');
+  const defaultTitle = title.textContent;
+  const defaultText = text.textContent;
+
+  const resetFocus = () => {
+    cards.forEach(c => c.classList.remove('is-active','is-muted'));
+    title.textContent = defaultTitle;
+    text.textContent = defaultText;
+  };
+
+  const focusCard = (card) => {
+    const already = card.classList.contains('is-active');
+    resetFocus();
+    if (already) return;
+    cards.forEach(c => c.classList.toggle('is-muted', c !== card));
+    card.classList.add('is-active');
+    title.textContent = card.dataset.title;
+    text.textContent = card.dataset.summary;
+  };
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => focusCard(card));
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); focusCard(card); }
+    });
+    card.addEventListener('pointermove', e => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth < 701) return;
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - .5;
+      const y = (e.clientY - r.top) / r.height - .5;
+      card.style.transform = `rotateX(${-y*12}deg) rotateY(${x*14}deg) translateZ(22px) scale(1.018)`;
+    });
+    card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+  });
+
+  filters.forEach(btn => btn.addEventListener('click', () => {
+    filters.forEach(b => b.classList.toggle('active', b === btn));
+    const value = btn.dataset.filter;
+    resetFocus();
+    cards.forEach(card => {
+      const show = value === 'all' || card.dataset.group.split(' ').includes(value);
+      card.hidden = !show;
+    });
+    title.textContent = value === 'all' ? defaultTitle : `${btn.textContent} dependencies`;
+    text.textContent = value === 'all' ? defaultText : `Showing the items most closely related to ${btn.textContent.toLowerCase()}. Select a card for the management implication.`;
+  }));
+
+  section.addEventListener('pointermove', e => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth < 701) return;
+    const r = section.getBoundingClientRect();
+    const px = (e.clientX-r.left)/r.width;
+    const py = (e.clientY-r.top)/r.height;
+    const x = px-.5;
+    const y = py-.5;
+    section.style.setProperty('--mx', `${px*100}%`);
+    section.style.setProperty('--my', `${py*100}%`);
+    layout.style.transform = `rotateX(${-y*2.4}deg) rotateY(${x*3.2}deg)`;
+    hub.style.transform = `translateZ(34px) rotateY(${x*12}deg) rotateX(${-y*9}deg) scale(1.025)`;
+  });
+  section.addEventListener('pointerleave', () => {
+    layout.style.transform = '';
+    hub.style.transform = '';
+    section.style.setProperty('--mx','50%');
+    section.style.setProperty('--my','45%');
+  });
+
+  const roadmap = document.querySelector('.roadmap-section');
+  if (roadmap) {
+    const phases = [...roadmap.querySelectorAll('.roadmap-phase')];
+    const messageTitle = roadmap.querySelector('#roadmapMessageTitle');
+    const messageText = roadmap.querySelector('#roadmapMessageText');
+    const phaseMessages = [
+      ['Phase 1 — Establish one source of truth','No prioritisation should begin until every proposal is captured consistently and its original intent is confirmed by the accountable division.'],
+      ['Phase 2 — Challenge before committing','This phase prevents weak assumptions, duplicate projects and BAU activity from entering the HOME31 investment portfolio.'],
+      ['Phase 3 — Design the enterprise connection','Shared systems, data, people, governance and approvals are connected here so LPPSA does not solve the same problem separately.'],
+      ['Phase 4 — Convert ambition into choices','Management can now see what should move first, what must wait, what it will cost and which dependency must be resolved.'],
+      ['Phase 5 — Move from endorsement to mobilisation','The portfolio leaves the room with named sponsors, decision gates, delivery waves and a clear mandate for accountable owners to begin.']
+    ];
+    let active = 0;
+    let timer;
+    const activate = (index, userInitiated=false) => {
+      active = index;
+      phases.forEach((phase,i) => {
+        phase.classList.toggle('is-current', i === index);
+        phase.classList.toggle('is-dim', i !== index);
+      });
+      messageTitle.textContent = phaseMessages[index][0];
+      messageText.textContent = phaseMessages[index][1];
+      if (userInitiated) restart();
+    };
+    const restart = () => {
+      clearInterval(timer);
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      timer = setInterval(() => activate((active + 1) % phases.length), 2600);
+    };
+    phases.forEach((phase,index) => {
+      phase.addEventListener('click', () => activate(index,true));
+      phase.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(index,true); }
+      });
+    });
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { activate(active); restart(); }
+        else clearInterval(timer);
+      });
+    }, {threshold:.2});
+    observer.observe(roadmap);
+  }
+
+  const body = document.body;
+  const introGate = document.getElementById('introGate');
+  const enterJourney = document.getElementById('enterJourney');
+  const skipIntro = document.getElementById('skipIntro');
+  const introCounter = document.getElementById('introCounter');
+  const introProgressBar = document.getElementById('introProgressBar');
+  const introParticles = document.getElementById('introParticles');
+  const introStreams = document.getElementById('introStreams');
+  const introCircuits = document.getElementById('introCircuits');
+  const introPanel = document.querySelector('.intro-panel');
+  const introNetwork = document.getElementById('introNetwork');
+  const introRings = document.querySelector('.intro-rings');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const completeIntro = () => {
+    body.classList.add('intro-complete');
+    sessionStorage.setItem('cpsIntroPlayed','1');
+  };
+
+  if (sessionStorage.getItem('cpsIntroPlayed') === '1') {
+    completeIntro();
+  } else if (introGate) {
+    for (let i = 0; i < 22; i++) {
+      const p = document.createElement('span');
+      p.className = 'intro-particle';
+      p.style.left = `${Math.random()*100}%`;
+      p.style.top = `${Math.random()*100}%`;
+      p.style.animationDuration = `${8 + Math.random()*10}s`;
+      p.style.animationDelay = `${-Math.random()*10}s`;
+      p.style.setProperty('--tx', `${-12 + Math.random()*24}vw`);
+      p.style.setProperty('--ty', `${-18 + Math.random()*36}vh`);
+      introParticles.appendChild(p);
+    }
+    for (let i = 0; i < 8; i++) {
+      const s = document.createElement('span');
+      s.className = `intro-stream${i % 3 === 0 ? ' gold' : ''}`;
+      s.style.top = `${12 + Math.random()*76}%`;
+      s.style.left = `${-20 - Math.random()*18}vw`;
+      s.style.width = `${14 + Math.random()*18}vw`;
+      s.style.animationDuration = `${14 + Math.random()*10}s`;
+      s.style.animationDelay = `${-Math.random()*10}s`;
+      introStreams.appendChild(s);
+    }
+    for (let i = 0; i < 7; i++) {
+      const c = document.createElement('span');
+      c.className = 'intro-circuit';
+      c.style.top = `${16 + Math.random()*68}%`;
+      c.style.left = `${-18 - Math.random()*16}vw`;
+      c.style.width = `${18 + Math.random()*18}vw`;
+      c.style.animationDuration = `${11 + Math.random()*7}s`;
+      c.style.animationDelay = `${-Math.random()*8}s`;
+      introCircuits.appendChild(c);
+    }
+
+    const duration = prefersReduced ? 400 : 6200;
+    const holdDelay = prefersReduced ? 200 : 2100;
+    const totalAuto = prefersReduced ? null : 8800;
+    const start = performance.now();
+    const ease = t => 1 - Math.pow(1 - t, 3);
+    const animateCounter = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = ease(progress);
+      const value = Math.round(eased * 120);
+      introCounter.textContent = value;
+      introProgressBar.style.width = `${progress * 100}%`;
+      if (progress < 1) requestAnimationFrame(animateCounter);
+      else {
+        introCounter.textContent = '120';
+        introProgressBar.style.width = '100%';
+      }
+    };
+    requestAnimationFrame(animateCounter);
+
+    let pulseIndex = 0;
+    const milestoneCards = [...document.querySelectorAll('.intro-milestones span')];
+    const pulseMilestones = () => {
+      milestoneCards.forEach((card,i) => {
+        card.style.boxShadow = i === pulseIndex ? '0 0 0 1px rgba(255,255,255,.18), 0 0 26px rgba(123,232,255,.22)' : '';
+        card.style.transform = i === pulseIndex ? 'translateY(-4px)' : '';
+      });
+      pulseIndex = (pulseIndex + 1) % milestoneCards.length;
+    };
+    pulseMilestones();
+    const milestoneTimer = prefersReduced ? null : setInterval(pulseMilestones, 1050);
+
+    const parallaxMove = e => {
+      if (prefersReduced) return;
+      const x = (e.clientX / window.innerWidth) - .5;
+      const y = (e.clientY / window.innerHeight) - .5;
+      if (introPanel) introPanel.style.transform = `translate3d(${x * 10}px, ${y * 8}px, 0)`;
+      if (introNetwork) introNetwork.style.transform = `translate3d(${x * 22}px, ${y * 18}px, 0)`;
+      if (introRings) introRings.style.transform = `translate3d(${x * -12}px, ${y * -10}px, 0)`;
+      if (introParticles) introParticles.style.transform = `translate3d(${x * 18}px, ${y * 14}px, 0)`;
+    };
+    const parallaxReset = () => {
+      if (introPanel) introPanel.style.transform = '';
+      if (introNetwork) introNetwork.style.transform = '';
+      if (introRings) introRings.style.transform = '';
+      if (introParticles) introParticles.style.transform = '';
+    };
+    introGate.addEventListener('pointermove', parallaxMove);
+    introGate.addEventListener('pointerleave', parallaxReset);
+
+    const autoEnter = totalAuto ? setTimeout(() => {
+      completeIntro();
+    }, totalAuto) : null;
+
+    [enterJourney, skipIntro].forEach(btn => btn && btn.addEventListener('click', () => {
+      if (autoEnter) clearTimeout(autoEnter);
+      if (milestoneTimer) clearInterval(milestoneTimer);
+      completeIntro();
+    }));
+  }
+
+
+})();
+</script>
+
+</body>
+</html>
